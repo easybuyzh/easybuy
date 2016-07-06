@@ -34,6 +34,8 @@ public class EbManuserDao extends BaseDao{
                 te.setEuUserName(rs.getString("eu_user_name"));
                 te.setEuSex(rs.getString("eu_sex"));
                 te.setEuEmail(rs.getString("eu_email"));
+                te.setEuSex(rs.getString("eu_sex"));
+                te.setEuEmail(rs.getString("eu_email"));
                 all.add(te);
             }
         } catch (SQLException e) {
