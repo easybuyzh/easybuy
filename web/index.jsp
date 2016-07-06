@@ -102,12 +102,12 @@
         <div class="price-off">
             <h2>今日特价</h2>
             <ul class="product clearfix">
-                <c:forEach var="product" items="${productslist}">
+                <c:forEach var="product" items="${bargainlist}">
                     <li>
                     <dl>
                         <dt><a href="/ProductView.Servlet?id=${product.getEpId()}" target="_blank"><img src="images/product/${product.getEpcProductIcon()}"/></a></dt>
                         <dd class="title"><a href="/ProductView.Servlet?id=${product.getEpId()}" target="_blank">${product.getEpName()}</a></dd>
-                        <dd class="price">￥${product.getEpPrice()}</dd>
+                        <dd class="price">原价:${product.getEpPrice()} , 折扣价: ${product.getEpBaPrice()}</dd>
                     </dl>
                    </li>
                 </c:forEach>
@@ -136,12 +136,12 @@
         <div class="hot">
             <h2>热卖推荐</h2>
             <ul class="product clearfix">
-                <c:forEach var="product" items="${productslist}">
+                <c:forEach var="product" items="${hotlist}">
                 <li>
                     <dl>
                         <dt><a href="/ProductView.Servlet" target="_blank"><img src="images/product/${product.getEpcProductIcon()}"/></a></dt>
                         <dd class="title"><a href="product-view.jsp" target="_blank">${product.getEpName()}</a></dd>
-                        <dd class="price">￥${product.getEpPrice()}</dd>
+                        <dd class="price">￥${product.getEpPrice()} , view : ${product.getEpViewCount()}</dd>
                     </dl>
                 </li>
                 </c:forEach>

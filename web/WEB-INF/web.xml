@@ -5,7 +5,7 @@
          version="3.1">
     <servlet>
         <servlet-name>EbNewsController</servlet-name>
-        <servlet-class>sdkd.com.ec.controller.EbNewsController</servlet-class>
+        <servlet-class>sdkd.com.ec.servlet.IndexServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EbNewsController</servlet-name>
@@ -48,14 +48,6 @@
         <url-pattern>/Comment.Servlet</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-    <servlet-name>EbProductController</servlet-name>
-    <servlet-class>sdkd.com.ec.servlet.BargainProductServlet</servlet-class>
-</servlet>
-    <servlet-mapping>
-        <servlet-name>EbProductController</servlet-name>
-        <url-pattern>/Product.Servlet</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>InsertCommentServlet</servlet-name>
