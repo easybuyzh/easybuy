@@ -19,17 +19,17 @@ public class EbNewsViewController extends HttpServlet {
         doGet(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int id =Integer.parseInt(request.getParameter("id"));
-        EbNewsDao newsDao = new EbNewsDao();
-        List<EbNews> list = newsDao.getNews();
-        EbNews ebn = null;
-        for(EbNews ebn1: list)
-        {
-            if(ebn1.getEnId().equals(id))
+            int id =Integer.parseInt(request.getParameter("id"));
+            EbNewsDao newsDao = new EbNewsDao();
+            List<EbNews> list = newsDao.getNews();
+            EbNews ebn = null;
+            for(EbNews ebn1: list)
             {
-                ebn=ebn1;
+                if(ebn1.getEnId().equals(id))
+                {
+                    ebn=ebn1;
                 break;
             }
         }
