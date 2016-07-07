@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by zhaoshuai on 2016/7/6.
+ * Created by zhaoshuai on 2016/7/7.
  */
-@WebServlet(name = "RegResultServlet")
-public class RegResultServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet")
+public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          doGet(request,response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-           request.setAttribute("userName",request.getParameter("userName"));
+           request.getSession().removeAttribute("userName");
            request.getRequestDispatcher("/Index.Servlet").forward(request,response);
     }
 }

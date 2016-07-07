@@ -26,7 +26,5 @@ public class EbNoticeController extends HttpServlet {
         List<EbNotice> list =ebNoticeDao.getNotice();
         request.setAttribute("ebnoticelist",list);
         request.getRequestDispatcher("/index.jsp").forward(request,response);
-
-
     }
 }

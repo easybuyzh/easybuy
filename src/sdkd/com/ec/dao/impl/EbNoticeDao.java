@@ -31,7 +31,7 @@ public class EbNoticeDao extends BaseDao {
                 ebn.setNoticeTitle(res.getString("notice_title"));
                 ebn.setNoticeTime(res.getString("notice_time"));
                 list.add(ebn);
-                //System.out.println(ebn.getNoticeContent());
+                System.out.println(ebn.getNoticeContent() + " ****** ");
 
             }
         } catch (SQLException e) {

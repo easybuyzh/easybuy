@@ -26,12 +26,11 @@ public class LoginServlet extends HttpServlet {
          EbUserDao userDao = new EbUserDao();
          System.out.println("here --> " + userName);
          if(userDao.CheckUser(userName,passWord) == true){
-             request.setAttribute("userName",userName);
-             System.out.println("right !!!!!!!!");
-                request.getRequestDispatcher("/Index.Servlet").forward(request,response);
+             request.getSession().setAttribute("userName",userName);
+             request.getRequestDispatcher("/Index.Servlet").forward(request,response);
          }  else {
                 request.setAttribute("hint","用户名或密码错误");
-                request.getRequestDispatcher("index.jsp").forward(request,response);
+                request.getRequestDispatcher("login.jsp").forward(request,response);
          }
     }
 }

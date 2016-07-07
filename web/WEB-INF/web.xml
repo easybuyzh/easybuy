@@ -76,4 +76,23 @@
         <servlet-name>EbProductViewController</servlet-name>
         <url-pattern>/ProductView.Servlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EbNoticeController</servlet-name>
+        <servlet-class>sdkd.com.ec.controller.EbNoticeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EbNoticeController</servlet-name>
+        <url-pattern>/Notice.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EbNoticeViewController</servlet-name>
+        <servlet-class>sdkd.com.ec.controller.EbNoticeViewController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EbNoticeViewController</servlet-name>
+        <url-pattern>/NoticeView.Servlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

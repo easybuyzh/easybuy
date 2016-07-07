@@ -27,6 +27,8 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("productslist",new TableService().getProductTable());
         request.setAttribute("bargainlist",new TableService().getBargainProductList());
         request.setAttribute("hotlist",new TableService().getHotProductList());
+        request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
+        request.setAttribute("noticelist",new TableService().getNoticeTable());
 
         //跳转
         request.getRequestDispatcher("/index.jsp").forward(request,response);

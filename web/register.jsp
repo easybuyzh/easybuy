@@ -50,6 +50,9 @@
 		<em class="corner rt"></em>
 		<div class="box">
 			<h1>欢迎注册易买网</h1>
+			<c:if test="${hint!=null}">
+				<h1>${hint}</h1>
+			</c:if>
 			<ul class="steps clearfix">
 				<li class="current"><em></em>填写注册信息</li>
 				<li class="last"><em></em>注册成功</li>

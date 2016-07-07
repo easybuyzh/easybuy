@@ -1,10 +1,7 @@
 package sdkd.com.ec.service;
 
 import sdkd.com.ec.dao.BaseDao;
-import sdkd.com.ec.dao.impl.EbCommentDao;
-import sdkd.com.ec.dao.impl.EbNewsDao;
-import sdkd.com.ec.dao.impl.EbProductDao;
-import sdkd.com.ec.dao.impl.EbUserDao;
+import sdkd.com.ec.dao.impl.*;
 import sdkd.com.ec.model.*;
 
 import java.util.ArrayList;
@@ -30,15 +27,22 @@ public class TableService extends BaseDao {
         return new EbUserDao().getEbUsers();
     }
 
+    public List<EbProductCategory> getProductCategoryTable() {
+        return new EbProductCategoryDao().getProductCatagreys();
+    }
+    public List<EbNotice> getNoticeTable(){
+        return new EbNoticeDao().getNotice();
+    }
+
     public List<EbProduct> getBargainProductList(){
         List<EbProduct> all = getProductTable();
         List<EbProduct> res = new ArrayList<EbProduct>();
         for(EbProduct x : all){
-               if(x.getEpBargain().compareTo("" + 1) == 0){
-                      res.add(x);
-                      if(res.size() == Integer.valueOf(getPro("BargainProductMaxmumShowNumber")))
-                          break;
-               }
+            if(x.getEpBargain().compareTo("" + 1) == 0){
+                res.add(x);
+                if(res.size() == Integer.valueOf(getPro("BargainProductMaxmumShowNumber")))
+                    break;
+            }
         }
         return res;
     }

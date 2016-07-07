@@ -38,7 +38,6 @@ public class EbNewsViewController extends HttpServlet {
         System.out.println(newstitle);*/
         request.setAttribute("ebn", ebn);
 
-
         //跳转
         request.getRequestDispatcher("/news-view.jsp").forward(request, response);
     }

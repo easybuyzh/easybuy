@@ -22,13 +22,12 @@ public class InsertCommentServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String guestName = request.getParameter("guestName");
-        String guestTitle = request.getParameter("guestTitle");
         String guestContent = request.getParameter("guestContent");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String nowTime = sdf.format(now);
         EbCommentDao te = new EbCommentDao();
-        te.InsertComment(guestName , guestTitle , guestContent , nowTime);
+        te.InsertComment(guestName , guestContent , nowTime);
         request.getRequestDispatcher("/Comment.Servlet").forward(request,response);
     }
 }

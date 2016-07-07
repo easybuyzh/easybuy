@@ -49,10 +49,10 @@ public class EbUserDao extends BaseDao {
 
     public boolean InsertUser(String EuUserName, String EuPassword) {
         List<EbUser> all = new ArrayList<EbUser>();
-        String userId = "33";
+        String id = String.valueOf((getEbUsers().size() + 1));
         String sql = "insert into easybuy_user (eu_user_id,eu_user_name,eu_password) values(?,?,?)";
         List<String> params = new ArrayList<String>();
-        params.add(userId);
+        params.add(id);
         params.add(EuUserName);
         params.add(EuPassword);
         int res = this.exeucteModify(sql,params);

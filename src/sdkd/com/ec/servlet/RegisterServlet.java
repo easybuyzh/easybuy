@@ -29,6 +29,7 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("userName",userName);
             request.getRequestDispatcher("reg-result.jsp").forward(request,response);
         }  else {
+            request.setAttribute("hint","注册失败，可能原因是用户名已存在");
             request.getRequestDispatcher("register.jsp").forward(request,response);
         }
     }
