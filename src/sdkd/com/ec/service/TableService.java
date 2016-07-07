@@ -56,4 +56,15 @@ public class TableService extends BaseDao {
         }
         return res;
     }
+    public List<EbProduct> getProductListByCategory(String id){
+        System.out.println(id + " ------------> ");
+         List<EbProduct> all = this.getProductTable();
+         List<EbProduct> res = new ArrayList<EbProduct>();
+         for(EbProduct x : all){
+                if(x.getEpcId().compareTo(id) == 0){
+                      res.add(x);
+                }
+         }
+        return res;
+    }
 }

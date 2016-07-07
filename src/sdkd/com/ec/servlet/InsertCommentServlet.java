@@ -1,6 +1,7 @@
 package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.dao.impl.EbCommentDao;
+import sdkd.com.ec.util.Format;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,10 +22,11 @@ public class InsertCommentServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String guestName = request.getParameter("guestName");
-        String guestContent = request.getParameter("guestContent");
+        String guestName = Format.JspStringFormat(request.getParameter("guestName"));
+        String guestContent =  Format.JspStringFormat(request.getParameter("guestContent"));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
+
         String nowTime = sdf.format(now);
         EbCommentDao te = new EbCommentDao();
         te.InsertComment(guestName , guestContent , nowTime);

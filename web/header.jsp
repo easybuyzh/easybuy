@@ -7,6 +7,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>易买网 - 首页</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="scripts/function.js"></script>
+</head>
+<body>
+
 <div id="header" class="wrap">
     <div id="logo"><img src="images/logo.gif"/></div>
     <div class="help">

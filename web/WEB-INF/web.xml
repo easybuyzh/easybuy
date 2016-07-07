@@ -95,4 +95,22 @@
         <url-pattern>/NoticeView.Servlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/Logout.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProductListServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ProductListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductListServlet</servlet-name>
+        <url-pattern>/ProductList.Servlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

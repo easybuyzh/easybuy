@@ -4,6 +4,7 @@ import sdkd.com.ec.dao.impl.EbNewsDao;
 import sdkd.com.ec.dao.impl.EbProductDao;
 import sdkd.com.ec.model.EbNews;
 import sdkd.com.ec.model.EbProduct;
+import sdkd.com.ec.service.TableService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,6 +45,9 @@ public class EbProductViewController extends HttpServlet {
 
         System.out.println(ebp.getEpName());
         request.setAttribute("product", ebp);
+        request.setAttribute("newslist",new TableService().getNewsTable());
+        request.setAttribute("noticelist",new TableService().getNoticeTable());
+        request.setAttribute("productcategorylist",new TableService().getProductCategoryTable())    ;
 
         //跳转
         request.getRequestDispatcher("/product-view.jsp").forward(request, response);

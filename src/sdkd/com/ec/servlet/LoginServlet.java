@@ -2,6 +2,7 @@ package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.dao.impl.EbUserDao;
 import sdkd.com.ec.model.EbUser;
+import sdkd.com.ec.util.Format;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +21,11 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         String userName = request.getParameter("userName");
-         String passWord = request.getParameter("passWord");
+         String userName = Format.JspStringFormat(request.getParameter("userName"));
+         String passWord = Format.JspStringFormat(request.getParameter("passWord"));
          String veryCode = request.getParameter("veryCode");
          EbUserDao userDao = new EbUserDao();
+        
          System.out.println("here --> " + userName);
          if(userDao.CheckUser(userName,passWord) == true){
              request.getSession().setAttribute("userName",userName);

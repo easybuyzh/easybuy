@@ -1,6 +1,7 @@
 package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.dao.impl.EbUserDao;
+import sdkd.com.ec.util.Format;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,14 +20,13 @@ public class RegisterServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userName = request.getParameter("userName");
-        String passWord = request.getParameter("passWord");
+        String userName = Format.JspStringFormat(request.getParameter("userName"));
+        String passWord = Format.JspStringFormat(request.getParameter("passWord"));
 
         EbUserDao userDao = new EbUserDao();
-        System.out.println("here --> " + userName);
+
         if(userDao.InsertUser(userName,passWord) == true){
-            System.out.println("right !!!!!!!!");
-            request.setAttribute("userName",userName);
+            request.getSession().setAttribute("userName",userName);
             request.getRequestDispatcher("reg-result.jsp").forward(request,response);
         }  else {
             request.setAttribute("hint","注册失败，可能原因是用户名已存在");

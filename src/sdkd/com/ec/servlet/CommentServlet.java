@@ -2,6 +2,7 @@ package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.dao.impl.EbCommentDao;
 import sdkd.com.ec.model.EbComment;
+import sdkd.com.ec.service.TableService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,9 +22,8 @@ public class CommentServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EbCommentDao mydao = new EbCommentDao();
-        List<EbComment> CommentList = mydao.getComments();
-        request.setAttribute("commentlist"  , CommentList);
+        request.setAttribute("commentlist"  , new TableService().getCommentTable());
+        request.setAttribute("productcategorylist"  , new TableService().getProductCategoryTable());
         request.getRequestDispatcher("guestbook.jsp").forward(request,response);
     }
 }
