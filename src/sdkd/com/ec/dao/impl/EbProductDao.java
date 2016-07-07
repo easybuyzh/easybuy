@@ -15,7 +15,7 @@ import java.util.List;
 public class EbProductDao extends BaseDao{
          public List<EbProduct>  getProducts(){
              List<EbProduct> all = new ArrayList<EbProduct>();
-             String sql = "select * from easybuy_product";
+             String sql = "select * from easybuy_product order by ep_view_count desc";
              try {
                  ResultSet rs = this.executeSearch(sql,null);
                  while (rs.next()){

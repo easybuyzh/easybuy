@@ -30,13 +30,25 @@ public class TableService extends BaseDao {
         return new EbUserDao().getEbUsers();
     }
 
-    public List<EbProduct> getHotProductList(){
+    public List<EbProduct> getBargainProductList(){
         List<EbProduct> all = getProductTable();
         List<EbProduct> res = new ArrayList<EbProduct>();
         for(EbProduct x : all){
                if(x.getEpBargain().compareTo("" + 1) == 0){
                       res.add(x);
+                      if(res.size() == Integer.valueOf(getPro("BargainProductMaxmumShowNumber")))
+                          break;
                }
+        }
+        return res;
+    }
+
+    public List<EbProduct> getHotProductList(){
+        List<EbProduct> all = getProductTable();
+        List<EbProduct> res = new ArrayList<EbProduct>();
+        int lim = Math.min(all.size() , Integer.valueOf(getPro("HotProductMaxmumShowNumber")));
+        for(int i = 0 ; i < lim ; i++){
+             res.add(all.get(i));
         }
         return res;
     }
