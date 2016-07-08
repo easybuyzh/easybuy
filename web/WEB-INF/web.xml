@@ -113,4 +113,8 @@
         <url-pattern>/ProductList.Servlet</url-pattern>
     </servlet-mapping>
 
+    <welcome-file-list>
+       <welcome-file>Index.Servlet</welcome-file>
+    </welcome-file-list>
+
 </web-app>

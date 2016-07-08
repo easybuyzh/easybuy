@@ -20,7 +20,7 @@
                     <li>
                         <dl>
                             <dt><a href="/ProductView.Servlet?id=${product.getEpId()}" target="_blank"><img
-                                    src="images/product/${product.getEpcProductIcon()}"/></a></dt>
+                                    src="images/product/${product.getEpProductIcon()}"/></a></dt>
                             <dd class="title"><a href="/ProductView.Servlet?id=${product.getEpId()}"
                                                  target="_blank">${product.getEpName()}</a></dd>
                             <dd class="price">原价:${product.getEpPrice()} , 折扣价: ${product.getEpBaPrice()}</dd>

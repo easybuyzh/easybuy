@@ -5,7 +5,7 @@
 
 <jsp:include page="header.jsp"/>
 <div id="position" class="wrap">
-	您现在的位置：<a href="/Index.Servlet">易买网</a> &gt; <a href="product-list.jsp">图书音像</a> &gt; 图书
+	您现在的位置：<a href="/Index.Servlet">易买网</a>  &gt; ${category}
 </div>
 <div id="main" class="wrap">
 	<jsp:include page="index-left.jsp"/>

@@ -12,7 +12,7 @@
 	<div id="product" class="main">
 		<h1>${product.getEpName()}</h1>
 		<div class="infos">
-			<div class="thumb"><img src="images/product/0.jpg" /></div>
+			<div class="thumb"><img src="images/product/${product.getEpProductIcon()}" /></div>
 			<div class="buy">
 				<p>商城价：<span class="price">￥${product.getEpPrice()}</span></p>
 				<p>库　存：${product.getEpStock()}</p>
@@ -21,10 +21,9 @@
 			<div class="clear"></div>
 		</div>
 		<div class="introduce">
-			<h2><strong>${product.getEpDescription()}</strong></h2>
+			<h2><strong>商品简介</strong></h2>
 			<div class="text">
-				sdf<br />
-				sdf<br />
+				${product.getEpDescription()}<br/>
 			</div>
 		</div>
 	</div>

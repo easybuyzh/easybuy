@@ -4,6 +4,7 @@ import sdkd.com.ec.dao.impl.EbNewsDao;
 import sdkd.com.ec.dao.impl.EbProductDao;
 import sdkd.com.ec.model.EbNews;
 import sdkd.com.ec.model.EbProduct;
+import sdkd.com.ec.service.TableService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,25 +24,9 @@ public class EbProductController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("productslist",new TableService().getProductTable());
 
-        EbProductDao productDao = new EbProductDao();
-        List<EbProduct> list = productDao.getProducts();
-        request.setAttribute("productslist",list);
-        System.out.println(list.size() + "***");
-        //跳转
         request.getRequestDispatcher("/index.jsp").forward(request,response);
-
-        /**
-         * login
-         */
-        /*EbUser user =  login();
-        request.getSession().setAttribute("user",user);*/
-        /*String paraId = request.getParameter("id");
-        if(paraId!=null && !"".equals(paraId)){
-            int id = Integer.valueOf(id);
-            EbNews news = newsDao.getNewsById(id);
-            request.setAttribute("news",news);
-        }*/
     }
 }
 

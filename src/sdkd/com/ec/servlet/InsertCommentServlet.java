@@ -1,7 +1,8 @@
 package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.dao.impl.EbCommentDao;
-import sdkd.com.ec.util.Format;
+import sdkd.com.ec.service.TableService;
+import sdkd.com.ec.util.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,14 +23,12 @@ public class InsertCommentServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String guestName = Format.JspStringFormat(request.getParameter("guestName"));
-        String guestContent =  Format.JspStringFormat(request.getParameter("guestContent"));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date now = new Date();
+        String guestName = Utils.JspStringFormat(request.getParameter("guestName"));
+        String guestContent =  Utils.JspStringFormat(request.getParameter("guestContent"));
+        String nowTime = Utils.getNowTimeInMysqlFormat();
 
-        String nowTime = sdf.format(now);
-        EbCommentDao te = new EbCommentDao();
-        te.InsertComment(guestName , guestContent , nowTime);
+        new TableService().insertComment(guestName , guestContent,nowTime);
+
         request.getRequestDispatcher("/Comment.Servlet").forward(request,response);
     }
 }

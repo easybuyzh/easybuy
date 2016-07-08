@@ -57,7 +57,7 @@ public class TableService extends BaseDao {
         return res;
     }
     public List<EbProduct> getProductListByCategory(String id){
-        System.out.println(id + " ------------> ");
+        //System.out.println(id + " ------------> ");
          List<EbProduct> all = this.getProductTable();
          List<EbProduct> res = new ArrayList<EbProduct>();
          for(EbProduct x : all){
@@ -66,5 +66,17 @@ public class TableService extends BaseDao {
                 }
          }
         return res;
+    }
+
+    public boolean insertComment(String guestName , String guestContent , String nowTime){
+        EbCommentDao te = new EbCommentDao();
+        return te.InsertComment(guestName , guestContent , nowTime);
+    }
+
+    public boolean IsUserExists(String name, String password){
+          return new EbUserDao().CheckUser(name,password);
+    }
+    public boolean RegisterUser(String name, String password){
+          return new EbUserDao().InsertUser(name,password);
     }
 }

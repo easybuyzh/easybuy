@@ -1,8 +1,8 @@
 package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.dao.impl.EbUserDao;
-import sdkd.com.ec.model.EbUser;
-import sdkd.com.ec.util.Format;
+import sdkd.com.ec.service.TableService;
+import sdkd.com.ec.util.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,13 +21,12 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         String userName = Format.JspStringFormat(request.getParameter("userName"));
-         String passWord = Format.JspStringFormat(request.getParameter("passWord"));
+         String userName = Utils.JspStringFormat(request.getParameter("userName"));
+         String passWord = Utils.JspStringFormat(request.getParameter("passWord"));
          String veryCode = request.getParameter("veryCode");
-         EbUserDao userDao = new EbUserDao();
-        
-         System.out.println("here --> " + userName);
-         if(userDao.CheckUser(userName,passWord) == true){
+
+
+         if(new TableService().IsUserExists(userName,passWord) == true){
              request.getSession().setAttribute("userName",userName);
              request.getRequestDispatcher("/Index.Servlet").forward(request,response);
          }  else {

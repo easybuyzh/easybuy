@@ -6,22 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-/**
- * Created by sdust on 2016/7/7.
- */
-    /*
-    eu_user_id
-eu_user_name
-eu_password
-eu_sex
-eu_birthday
-eu_identity_code
-eu_email
-eu_mobile
-eu_address
-eu_status
-
-    */
 public class EbManuserDao extends BaseDao{
     public List<EbUser> EbManuserDao() {
         List<EbUser> all = new ArrayList<EbUser>();
