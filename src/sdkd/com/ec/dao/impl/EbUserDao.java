@@ -47,6 +47,21 @@ public class EbUserDao extends BaseDao {
         return false;
     }
 
+    public String getUserIdByName(String EuUserName) {
+        List<EbUser> all = new ArrayList<EbUser>();
+        String sql = "select * from easybuy_user where eu_user_name = ?";
+        List<String> params = new ArrayList<String>();
+        params.add(EuUserName);
+        ResultSet rs = this.executeSearch(sql, params);
+        try {
+            if (rs.next())
+                return rs.getString("eu_user_id");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean InsertUser(String EuUserName, String EuPassword) {
         List<EbUser> all = new ArrayList<EbUser>();
         String id = String.valueOf((getEbUsers().size() + 1));

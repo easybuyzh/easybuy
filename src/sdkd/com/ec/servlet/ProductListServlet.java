@@ -22,8 +22,10 @@ public class ProductListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("productlist",new TableService().getProductListByCategory(request.getParameter("id")));
-        request.setAttribute("category",request.getParameter("category"));
         request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
+        request.setAttribute("parentid",request.getParameter("id"));
+        request.setAttribute("category",request.getParameter("category"));
+        System.out.println(request.getParameter("id") + " --  " + request.getParameter("category"));
 
         request.getRequestDispatcher("product-list.jsp").forward(request,response);
     }

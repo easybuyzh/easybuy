@@ -1,4 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <jsp:include page="header.jsp"/>
 <div id="position" class="wrap">
@@ -14,7 +16,7 @@
 					<p>恭喜：购买成功！</p>
 					<p>正在进入首页...</p>
 					<script type="text/javascript">
-						setTimeout("location.href='index.jsp'", 3000);
+						setTimeout("location.href='/Index.Servlet'", 3000);
 					</script>
 				</div>
 			</div>

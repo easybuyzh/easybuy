@@ -117,4 +117,14 @@
        <welcome-file>Index.Servlet</welcome-file>
     </welcome-file-list>
 
+    <servlet>
+        <servlet-name>ShoppingServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ShoppingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShoppingServlet</servlet-name>
+        <url-pattern>/Shopping.Servlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

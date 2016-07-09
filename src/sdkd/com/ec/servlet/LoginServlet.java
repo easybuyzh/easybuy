@@ -25,7 +25,18 @@ public class LoginServlet extends HttpServlet {
          String passWord = Utils.JspStringFormat(request.getParameter("passWord"));
          String veryCode = request.getParameter("veryCode");
 
-
+         if("shoppingservlet".equals((String)request.getSession().getAttribute("comfrom"))){
+             if(new TableService().IsUserExists(userName,passWord) == true){
+                 request.getSession().setAttribute("userName",userName);
+                 request.getSession().removeAttribute("comfrom");
+                 response.sendRedirect("/Shopping.Servlet");
+                 //问什么这里只能使用重定向才能跳转过去
+             }  else {
+                 request.setAttribute("hint","用户名或密码错误");
+                 request.getRequestDispatcher("login.jsp").forward(request,response);
+             }
+             return ;
+         }
          if(new TableService().IsUserExists(userName,passWord) == true){
              request.getSession().setAttribute("userName",userName);
              request.getRequestDispatcher("/Index.Servlet").forward(request,response);
@@ -34,4 +45,5 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").forward(request,response);
          }
     }
+
 }

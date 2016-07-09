@@ -28,9 +28,10 @@
 				<c:forEach var="product" items="${productlist}">
 					<li>
 						<dl>
-							<dt><a href="/ProductView.Servlet?id=${product.getEpId()}" target="_blank"><img
+							<dt><a href="/ProductView.Servlet?id=${product.getEpId()}&category=${category}&parentid=${parentid}" target="_blank"><img
 									src="images/product/${product.getEpcProductIcon()}"/></a></dt>
-							<dd class="title"><a href="/ProductView.Servlet?id=${product.getEpId()}"
+							<dd class="title">
+								<a href="/ProductView.Servlet?id=${product.getEpId()}&category=${category}&parentid=${parentid}"
 												 target="_blank">${product.getEpName()}</a></dd>
 							<dd class="price">${product.getEpPrice()}</dd>
 						</dl>

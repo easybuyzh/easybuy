@@ -22,7 +22,7 @@
         <c:if test="${userName!=null}">
             <a href="#">用户: ${userName}</a>
         </c:if>
-        <a href="#" class="shopping">购物车</a>
+        <a href="/Shopping.Servlet" class="shopping">购物车</a>
 
         <c:if test="${userName==null}">
             <a href="login.jsp">登录</a>

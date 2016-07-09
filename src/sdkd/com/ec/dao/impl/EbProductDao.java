@@ -25,12 +25,11 @@ public class EbProductDao extends BaseDao{
                      te.setEpDescription(rs.getString("ep_description"));
                      te.setEpPrice(rs.getString("ep_price"));
                      te.setEpStock(rs.getString("ep_stock"));
-                     te.setEpcProductIcon(rs.getString("ep_product_icon"));
+                     te.setEpProductIcon(rs.getString("ep_product_icon"));
                      te.setEpBaPrice(rs.getString("ep_ba_price"));
                      te.setEpBargain(rs.getString("ep_bargain"));
                      te.setEpViewCount(rs.getString("ep_view_count"));
                      te.setEpcId(rs.getString("epc_id"));
-                     //System.out.println("epc_id " + " -------------->" + te.getEpcId());
                      all.add(te);
                  }
              } catch (SQLException e) {

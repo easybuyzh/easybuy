@@ -143,6 +143,7 @@ function goBuy(id, price)
 	}
 	setCookie("product", newCookie);
 	location.href = "../shopping.jsp";
+
 }
 
 function delShopping(id)

@@ -5,7 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <jsp:include page="header.jsp"/>
 <div id="position" class="wrap">
-	您现在的位置：<a href="/Index.Servlet">易买网</a> &gt; <a href="product-list.jsp">图书音像</a> &gt; 图书
+	您现在的位置：<a href="/Index.Servlet">易买网</a>
+	<c:if test="${category!=null}">
+		&gt; <a href="/ProductList.Servlet?id=${parentid}&category=${category}">${category}</a>
+	</c:if>
+	&gt;商品详情
 </div>
 <div id="main" class="wrap">
 	<jsp:include page="index-left.jsp"/>
@@ -16,7 +20,10 @@
 			<div class="buy">
 				<p>商城价：<span class="price">￥${product.getEpPrice()}</span></p>
 				<p>库　存：${product.getEpStock()}</p>
-				<div class="button"><input type="button" name="button" value="" onclick="goBuy(1)" /><a href="#">放入购物车</a></div>
+				<div class="button">
+					<input type="button" name="button" value="" onclick="window.location.href='/Shopping.Servlet?productid=${product.getEpId()}'" />
+					<a href="#">放入购物车</a>
+				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
