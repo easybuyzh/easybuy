@@ -47,6 +47,9 @@ public class TableService extends BaseDao {
         }
         return res;
     }
+    public EbNews getNewsByEnCreateTime(String EnCreateTime){
+           return new EbNewsDao().getNewByEnCreateTime(EnCreateTime);
+    }
 
     public List<EbProduct> getHotProductList() {
         List<EbProduct> all = getProductTable();
@@ -102,8 +105,10 @@ public class TableService extends BaseDao {
               String userId = new EbUserDao().getUserIdByName(userName);
               List<EbViewCartDetail> pre = getCart(userName);
               for(EbViewCartDetail x : pre){
-                      if(x.getEcaProductId().equals(ProductId))
-                              return true;  // 该用户已经被用过了
+                      if(x.getEcaProductId().equals(ProductId)){
+                          new EbCartDao().IncCartQuantityUserId(new EbUserDao().getUserIdByName(userName));
+                          return true;  // 该用户已经添加了该商品，商品的数量加1
+                      }
               }
               return new EbCartDao().insertCart(userId,ProductId,ProductCount);
     }
@@ -128,5 +133,36 @@ public class TableService extends BaseDao {
                  new EbOrderDetailDao().insertOrderDetail(OrderId , x.getEcaProductId() , x.getEcaProductCount());
            }
            new EbCartDao().clearCartbyuserId(new EbUserDao().getUserIdByName(userName));
+    }
+
+    public boolean ReplyComment(String EcId,String Reply){
+           return new EbCommentDao().UpdateReplyByEcId(EcId,Reply);
+    }
+    public boolean DeleteCommentReply(String  EcId){
+           return new EbCommentDao().UpdateReplyByEcId(EcId , "null");
+    }
+    public EbComment getCommentByEcId(String EcId){
+           return new  EbCommentDao().getCommentByEcId(EcId);
+    }
+    public boolean deleteCommentByEcId(String EcId){
+           return new EbCommentDao().deleteCommentByEcId(EcId);
+    }
+    public boolean deleteNewsByEnCreateTime(String EnCreateTime){
+        return new EbNewsDao().deleteNewsByEnCreateTime(EnCreateTime);
+    }
+    public boolean updateNewsByEnCreateTime(String EnCreateTime ,String EnTitle,String EnContent){
+        return new EbNewsDao().UpdateNewsByEnCreateTime(EnCreateTime,EnTitle,EnContent);
+    }
+    public boolean insertNews(String EnTitle,String EnContent){
+        return new EbNewsDao().insertNews(EnTitle,EnContent);
+    }
+    public EbOrderView getOrderViewByOrderID(String OrderId){
+        return new EbOrderViewDao().getOrderViewByOrderId(OrderId);
+    }
+    public List<EbOrderView> getOrderViews(){
+        return new EbOrderViewDao().getOrderViews();
+    }
+    public boolean deleteOrderByEoId(String OrderId){
+         return  new EbOrderDao().deleteOrderByOrderId(OrderId);
     }
 }

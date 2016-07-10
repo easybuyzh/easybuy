@@ -21,11 +21,14 @@ public class EbCommentDao extends BaseDao {
             ResultSet rs = this.executeSearch(sql, null);
             while (rs.next()) {
                 EbComment te = new EbComment();
+                te.setEcId(rs.getString("ec_id"));
                 te.setEcReply(rs.getString("ec_reply"));
                 te.setEcContent(rs.getString("ec_content"));
                 te.setEcCreateTime(rs.getString("ec_create_time"));
                 te.setEcReplyTime(rs.getString("ec_reply_time"));
                 te.setEcNickName(rs.getString("ec_nick_name"));
+                if("null".compareTo(te.getEcReply()) == 0 || te.getEcReply() == null)
+                        te.setEcReply(null);
                 System.out.println(te.getEcNickName() + " ---  ");
                 //添加到集合中
                 all.add(te);
@@ -46,6 +49,47 @@ public class EbCommentDao extends BaseDao {
         params.add(name);
         params.add(datetime);
         System.out.println(id + " -->  " + name + " " + content + " " + datetime);
+        int res = this.exeucteModify(sql, params);
+        return (res > 0);
+    }
+
+    public boolean UpdateReplyByEcId(String EcId, String Reply) {
+        String sql = "update easybuy_comment set ec_reply = ? where ec_id = ?";
+        List<String> params = new ArrayList<String>();
+        params.add(Reply);
+        params.add(EcId);
+        int res = this.exeucteModify(sql, params);
+        return (res > 0);
+    }
+
+    public EbComment getCommentByEcId(String EcId) {
+        String sql = "select * from easybuy_comment where ec_id = ?";
+        List<String> params = new ArrayList<String>();
+        params.add(EcId);
+        ResultSet rs = this.executeSearch(sql, params);
+        try {
+            if (!rs.next())
+                return null;
+            EbComment te = new EbComment();
+            te.setEcId(rs.getString("ec_id"));
+            te.setEcReply(rs.getString("ec_reply"));
+            te.setEcContent(rs.getString("ec_content"));
+            te.setEcCreateTime(rs.getString("ec_create_time"));
+            te.setEcReplyTime(rs.getString("ec_reply_time"));
+            te.setEcNickName(rs.getString("ec_nick_name"));
+            if("null".compareTo(te.getEcReply()) == 0 || te.getEcReply() == null)
+                te.setEcReply(null);
+            return te;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean deleteCommentByEcId(String EcId) {
+        String sql = "delete from easybuy_comment where ec_id = ?";
+        List<String> params = new ArrayList<String>();
+        params.add(EcId);
         int res = this.exeucteModify(sql, params);
         return (res > 0);
     }

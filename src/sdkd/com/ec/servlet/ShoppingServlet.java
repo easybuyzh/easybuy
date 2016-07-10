@@ -24,8 +24,9 @@ public class ShoppingServlet extends HttpServlet {
 
             String CommitOrder = request.getParameter("CommitOrder");
             if(CommitOrder != null){
+                  //这里不再判断userName是否为空，是因为这个值是由该页面内部的键提交的
                   new TableService().CommitOrderByCart((String)request.getSession().getAttribute("userName"));
-                  request.getRequestDispatcher("shopping-result.jsp").forward(request,response);
+                  response.sendRedirect("shopping-result.jsp");
                   return ;
             }
 

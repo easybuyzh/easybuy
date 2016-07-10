@@ -126,5 +126,65 @@
         <url-pattern>/Shopping.Servlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ManageGuestBookServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageGuestBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageGuestBookServlet</servlet-name>
+        <url-pattern>/ManageGuestBook.Servlet</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ManageGuestBookModifyServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageGuestBookModifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageGuestBookModifyServlet</servlet-name>
+        <url-pattern>/ManageGuestBookModify.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageNewsServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageNewsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageNewsServlet</servlet-name>
+        <url-pattern>/ManageNews.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageNewsModifyServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageNewsModifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageNewsModifyServlet</servlet-name>
+        <url-pattern>/ManageNewsModify.Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ManageNewsAddServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageNewsAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageNewsAddServlet</servlet-name>
+        <url-pattern>/ManageNewsAdd.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageOrderServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageOrderServlet</servlet-name>
+        <url-pattern>/ManageOrder.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageOrderModifyServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageOrderModifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageOrderModifyServlet</servlet-name>
+        <url-pattern>/ManageOrderModify.Servlet</url-pattern>
+    </servlet-mapping>
 </web-app>

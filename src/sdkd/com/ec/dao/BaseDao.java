@@ -1,5 +1,7 @@
 package sdkd.com.ec.dao;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -52,16 +54,27 @@ public class BaseDao {
      * 获取配置信息
      * @return
      */
-    public String getPro(String key){
+    public String getPro(String key) {
         Properties pro = new Properties();
         try {
-            InputStream is =this.getClass().getResourceAsStream("/jdbc.properties");
+            InputStream is = this.getClass().getResourceAsStream("/jdbc.properties");
             pro.load(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
         String value = pro.get(key).toString();
         return value;
+    }
+    public void setPro(String key,String val){
+        Properties pro = new Properties();
+        try {
+            pro.setProperty(key, val);
+            FileOutputStream fos = new FileOutputStream(new File("/jdbc.properties"));
+            pro.store(fos, null);
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //CUD
