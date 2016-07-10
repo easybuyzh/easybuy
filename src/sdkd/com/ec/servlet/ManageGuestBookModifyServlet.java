@@ -39,8 +39,7 @@ public class ManageGuestBookModifyServlet extends HttpServlet {
             request.getRequestDispatcher("manage/manage-result.jsp").forward(request, response);
             return;
         }
-        EbComment comment = new TableService().getCommentByEcId(EcId);
-        request.setAttribute("comment", comment);
+        request.setAttribute("comment", new TableService().getCommentByEcId(EcId));
         request.getRequestDispatcher("manage/guestbook-modify.jsp").forward(request, response);
     }
 }

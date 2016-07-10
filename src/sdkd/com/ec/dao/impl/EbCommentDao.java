@@ -40,15 +40,12 @@ public class EbCommentDao extends BaseDao {
     }
 
     public boolean InsertComment(String name, String content, String datetime) {
-        EbCommentDao mydao = new EbCommentDao();
-        String id = "" + (mydao.getComments().size() + 1);
-        String sql = "insert into easybuy_comment (ec_id , ec_content , ec_nick_name , ec_create_time) values(?,?,?,?)";
+        String sql = "insert into easybuy_comment (ec_content , ec_nick_name , ec_create_time) values(?,?,?)";
         ArrayList<String> params = new ArrayList<String>();
-        params.add(id);
         params.add(content);
         params.add(name);
         params.add(datetime);
-        System.out.println(id + " -->  " + name + " " + content + " " + datetime);
+       // System.out.println(id + " -->  " + name + " " + content + " " + datetime);
         int res = this.exeucteModify(sql, params);
         return (res > 0);
     }

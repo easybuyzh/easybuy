@@ -8,23 +8,19 @@
 	<div class="main">
 		<h2>新增用户</h2>
 		<div class="manage">
-			<form action="manage-result.jsp">
+			<form action="/ManageUserAdd.Servlet">
 				<table class="form">
 					<tr>
 						<td class="field">用户名：</td>
-						<td><input type="text" class="text" name="userName" value="" /></td>
-					</tr>
-					<tr>
-						<td class="field">姓名：</td>
-						<td><input type="text" class="text" name="name" value="" /></td>
+						<td><input type="text" class="text" name="euusername" value="" /></td>
 					</tr>
 					<tr>
 						<td class="field">密码：</td>
-						<td><input type="text" class="text" name="passWord" value="" /></td>
+						<td><input type="text" class="text" name="eupassword" value="" /></td>
 					</tr>
 					<tr>
 						<td class="field">性别：</td>
-						<td><input type="radio" name="sex" value="1" checked="checked" />男 <input type="radio" name="sex" value="1" />女</td>
+						<td><input type="radio" name="sex" value="男" checked="checked" />男 <input type="radio" name="sex" value="女" />女</td>
 					</tr>
 					<tr>
 						<td class="field">出生日期：</td>
@@ -45,15 +41,15 @@
 					</tr>
 					<tr>
 						<td class="field">手机号码：</td>
-						<td><input type="text" class="text" name="mobile" value="" /></td>
+						<td><input type="text" class="text" name="eumobile" value="" /></td>
 					</tr>
 					<tr>
 						<td class="field">送货地址：</td>
-						<td><input type="text" class="text" name="address" value="" /></td>
+						<td><input type="text" class="text" name="euaddress" value="" /></td>
 					</tr>
 					<tr>
 						<td class="field">头像：</td>
-						<td><input type="file" class="text" name="photo" /></td>
+						<td><input type="file" class="text" name="euphoto" /></td>
 					</tr>
 					<tr>
 						<td></td>

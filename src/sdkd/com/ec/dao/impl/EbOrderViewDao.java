@@ -24,6 +24,7 @@ public class EbOrderViewDao extends BaseDao {
                 te.setEoUserId(rs.getString("eo_user_id"));
                 te.setEoCreateTime(rs.getString("eo_create_time"));
                 te.setEoCost(rs.getString("eo_cost"));
+                te.setEoStatus(rs.getString("eo_status"));
 
                 te.setEuUserName(rs.getString("eu_user_name"));
                 te.setEuSex(rs.getString("eu_sex"));

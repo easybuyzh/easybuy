@@ -24,7 +24,7 @@ public class EbNewsDao extends BaseDao {
                 news.setEnTitle(rs.getString("en_title"));
                 news.setEnContent(rs.getString("en_content"));
                 news.setEnCreateTime(rs.getString("en_create_time"));
-                System.out.println(news.getEnId() + " ---  " + news.getEnTitle());
+                //System.out.println(news.getEnId() + " ---  " + news.getEnTitle());
                 //添加到集合中
                 newsList.add(news);
             }
@@ -35,7 +35,6 @@ public class EbNewsDao extends BaseDao {
     }
 
     public boolean deleteNewsByEnCreateTime(String EnCreateTime) {
-        //System.out.println("Enid  --> "  + EnId );
         String sql = "delete from easybuy_news where en_create_time = ?";
         List<String> params = new ArrayList<String>();
         params.add(EnCreateTime);
@@ -56,7 +55,7 @@ public class EbNewsDao extends BaseDao {
     public EbNews getNewByEnCreateTime(String EnCreateTime) {
         List<EbNews> all = this.getNews();
         for (EbNews x : all) {
-            if (x.getEnId() == Integer.valueOf(EnCreateTime))
+            if (x.getEnCreateTime().compareTo(EnCreateTime) == 0)
                 return x;
         }
         return null;

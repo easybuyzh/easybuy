@@ -26,9 +26,12 @@
 				<tr>
 					<td class="first w4 c">${order.getEoId()}</td>
 					<td class="w1 c">${order.getEoUserId()}</td>
-					<td>${order.getEoA}</td>
-					<td class="w1 c">发货</td>
-					<td class="w1 c"><a href="order-modify.jsp">修改</a> <a href="#">删除</a></td>
+					<td>${order.getEuAddress()}</td>
+					<td class="w1 c">${order.getEoStatus()}</td>
+					<td class="w1 c">
+						<a href="/ManageOrderModify.Servlet?eoid=${order.getEoId()}">修改</a>
+						<a href="/ManageOrder.Servlet?eoid=${order.getEoId()}&eodelete=true">删除</a>
+					</td>
 					</tr>
 				</c:forEach>
 			</table>

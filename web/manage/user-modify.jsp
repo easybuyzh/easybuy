@@ -8,23 +8,23 @@
 	<div class="main">
 		<h2>修改用户</h2>
 		<div class="manage">
-			<form action="manage-result.jsp">
+			<form action="/ManageUserModify.Servlet">
 				<table class="form">
 					<tr>
-						<td class="field">用户名：</td>
-						<td><input type="text" class="text" name="userName" value="zhangsan" readonly="readonly" /></td>
+						<td class="field">用户ID：</td>
+						<td><input type="text" class="text" name="euuserid" value="${user.getEuUserId()}" readonly="readonly" /></td>
 					</tr>
 					<tr>
-						<td class="field">姓名：</td>
-						<td><input type="text" class="text" name="name" value="张三" /></td>
+						<td class="field">用户名：</td>
+						<td><input type="text" class="text" name="euusername" value="${user.getEuUserName()}" readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td class="field">密码：</td>
-						<td><input type="text" class="text" name="passWord" value="zhangsan" /></td>
+						<td><input type="text" class="text" name="eupassword" value="${user.getEuPassword()}" /></td>
 					</tr>
 					<tr>
 						<td class="field">性别：</td>
-						<td><input type="radio" name="sex" value="1" checked="checked" />男 <input type="radio" name="sex" value="1" />女</td>
+						<td><input type="radio" name="eusex" value="男" checked="checked" />男 <input type="radio" name="eusex" value="女" />女</td>
 					</tr>
 					<tr>
 						<td class="field">出生日期：</td>
@@ -45,11 +45,15 @@
 					</tr>
 					<tr>
 						<td class="field">手机号码：</td>
-						<td><input type="text" class="text" name="mobile" value="13800000000" /></td>
+						<td><input type="text" class="text" name="eumobile" value="${user.getEuMobile()}" /></td>
+					</tr>
+					<tr>
+						<td class="field">邮箱:</td>
+						<td><input type="text" class="text" name="euemail" value="${user.getEuEmail()}" /></td>
 					</tr>
 					<tr>
 						<td class="field">送货地址：</td>
-						<td><input type="text" class="text" name="address" value="高老庄" /></td>
+						<td><input type="text" class="text" name="euaddress" value="${user.getEuAddress()}" /></td>
 					</tr>
 					<tr>
 						<td class="field">头像：</td>

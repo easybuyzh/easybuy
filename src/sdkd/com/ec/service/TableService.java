@@ -47,8 +47,9 @@ public class TableService extends BaseDao {
         }
         return res;
     }
-    public EbNews getNewsByEnCreateTime(String EnCreateTime){
-           return new EbNewsDao().getNewByEnCreateTime(EnCreateTime);
+
+    public EbNews getNewsByEnCreateTime(String EnCreateTime) {
+        return new EbNewsDao().getNewByEnCreateTime(EnCreateTime);
     }
 
     public List<EbProduct> getHotProductList() {
@@ -86,7 +87,7 @@ public class TableService extends BaseDao {
     }
 
     public boolean ViewProductForOneTime(String id) {
-       return  new EbProductDao().ViewProductForOneTime(id);
+        return new EbProductDao().ViewProductForOneTime(id);
     }
 
     public EbProduct getProductById(String id) {
@@ -101,68 +102,142 @@ public class TableService extends BaseDao {
         }
         return ebp;
     }
-    public boolean insertOneProductIntoCart(String userName , String ProductId,String ProductCount){
-              String userId = new EbUserDao().getUserIdByName(userName);
-              List<EbViewCartDetail> pre = getCart(userName);
-              for(EbViewCartDetail x : pre){
-                      if(x.getEcaProductId().equals(ProductId)){
-                          new EbCartDao().IncCartQuantityUserId(new EbUserDao().getUserIdByName(userName));
-                          return true;  // 该用户已经添加了该商品，商品的数量加1
-                      }
-              }
-              return new EbCartDao().insertCart(userId,ProductId,ProductCount);
+
+    public boolean insertOneProductIntoCart(String userName, String ProductId, String ProductCount) {
+        String userId = new EbUserDao().getUserIdByName(userName);
+        List<EbViewCartDetail> pre = getCart(userName);
+        for (EbViewCartDetail x : pre) {
+            if (x.getEcaProductId().equals(ProductId)) {
+                new EbCartDao().IncCartQuantityUserId(new EbUserDao().getUserIdByName(userName));
+                return true;  // 该用户已经添加了该商品，商品的数量加1
+            }
+        }
+        return new EbCartDao().insertCart(userId, ProductId, ProductCount);
     }
-    public List<EbViewCartDetail> getCart(String userName){
-              return new EbViewCartDetailDao().getCartByUserName(userName);
+
+    public List<EbViewCartDetail> getCart(String userName) {
+        return new EbViewCartDetailDao().getCartByUserName(userName);
     }
-    public String getCartCost(String userName){
+
+    public String getCartCost(String userName) {
         List<EbViewCartDetail> all = this.getCart(userName);
         int money = 0;
-        for(EbViewCartDetail x : all){
-               money += Integer.valueOf(x.getCostByQuantity());
+        for (EbViewCartDetail x : all) {
+            money += Integer.valueOf(x.getCostByQuantity());
         }
         return String.valueOf(money);
     }
+
     /*
     提交订单功能，要先创建一个新的订单 , 并将购物车里的商品添加到OrderDetail表格中，并清空该用户的购物车
     */
-    public void CommitOrderByCart(String userName){
-           String OrderId = new EbOrderDao().createNewOrderByUserId(new EbUserDao().getUserIdByName(userName) , getCartCost(userName));
-           List<EbViewCartDetail> all = getCart(userName);
-           for(EbViewCartDetail x : all){
-                 new EbOrderDetailDao().insertOrderDetail(OrderId , x.getEcaProductId() , x.getEcaProductCount());
-           }
-           new EbCartDao().clearCartbyuserId(new EbUserDao().getUserIdByName(userName));
+    public void CommitOrderByCart(String userName) {
+        String OrderId = new EbOrderDao().createNewOrderByUserId(new EbUserDao().getUserIdByName(userName), getCartCost(userName));
+        List<EbViewCartDetail> all = getCart(userName);
+        for (EbViewCartDetail x : all) {
+            new EbOrderDetailDao().insertOrderDetail(OrderId, x.getEcaProductId(), x.getEcaProductCount());
+        }
+        new EbCartDao().clearCartbyuserId(new EbUserDao().getUserIdByName(userName));
     }
 
-    public boolean ReplyComment(String EcId,String Reply){
-           return new EbCommentDao().UpdateReplyByEcId(EcId,Reply);
+    public boolean ReplyComment(String EcId, String Reply) {
+        return new EbCommentDao().UpdateReplyByEcId(EcId, Reply);
     }
-    public boolean DeleteCommentReply(String  EcId){
-           return new EbCommentDao().UpdateReplyByEcId(EcId , "null");
+
+    public boolean DeleteCommentReply(String EcId) {
+        return new EbCommentDao().UpdateReplyByEcId(EcId, "null");
     }
-    public EbComment getCommentByEcId(String EcId){
-           return new  EbCommentDao().getCommentByEcId(EcId);
+
+    public EbComment getCommentByEcId(String EcId) {
+        return new EbCommentDao().getCommentByEcId(EcId);
     }
-    public boolean deleteCommentByEcId(String EcId){
-           return new EbCommentDao().deleteCommentByEcId(EcId);
+
+    public boolean deleteCommentByEcId(String EcId) {
+        return new EbCommentDao().deleteCommentByEcId(EcId);
     }
-    public boolean deleteNewsByEnCreateTime(String EnCreateTime){
+
+    public boolean deleteNewsByEnCreateTime(String EnCreateTime) {
         return new EbNewsDao().deleteNewsByEnCreateTime(EnCreateTime);
     }
-    public boolean updateNewsByEnCreateTime(String EnCreateTime ,String EnTitle,String EnContent){
-        return new EbNewsDao().UpdateNewsByEnCreateTime(EnCreateTime,EnTitle,EnContent);
+
+    public boolean updateNewsByEnCreateTime(String EnCreateTime, String EnTitle, String EnContent) {
+        return new EbNewsDao().UpdateNewsByEnCreateTime(EnCreateTime, EnTitle, EnContent);
     }
-    public boolean insertNews(String EnTitle,String EnContent){
-        return new EbNewsDao().insertNews(EnTitle,EnContent);
+
+    public boolean insertNews(String EnTitle, String EnContent) {
+        return new EbNewsDao().insertNews(EnTitle, EnContent);
     }
-    public EbOrderView getOrderViewByOrderID(String OrderId){
+
+    public EbOrderView getOrderViewByOrderID(String OrderId) {
         return new EbOrderViewDao().getOrderViewByOrderId(OrderId);
     }
-    public List<EbOrderView> getOrderViews(){
+
+    public List<EbOrderView> getOrderViews() {
         return new EbOrderViewDao().getOrderViews();
     }
-    public boolean deleteOrderByEoId(String OrderId){
-         return  new EbOrderDao().deleteOrderByOrderId(OrderId);
+
+    public boolean deleteOrderByEoId(String OrderId) {
+        return new EbOrderDao().deleteOrderByOrderId(OrderId);
+    }
+
+    public boolean updateOrderByEoId(String EoId, String EoStatus) {
+        return new EbOrderDao().updateOrderByOrderId(EoId, EoStatus);
+    }
+
+    public boolean InsertUser(List<String> columnName, List<String> params) {
+        return new EbUserDao().InsertUser(columnName, params);
+    }
+
+    public boolean updateUserByUserId(String UserId, List<String> params) {
+        return new EbUserDao().updateUserByUserId(UserId, params);
+    }
+
+    public boolean deleteUserByEuUserId(String EuUserId) {
+        return new EbUserDao().deleteUserByEuUserId(EuUserId);
+    }
+
+    public EbUser getUserByUserId(String EuUserId) {
+        return new EbUserDao().getUserByUserId(EuUserId);
+    }
+
+    public boolean insertProductCategory(String EpcName, String EpcParentId) {
+        return new EbProductCategoryDao().insertProductCategory(EpcName, EpcParentId);
+    }
+
+    public boolean updateProductCategoryByEpcId(String EpcId, String EpcName, String EpcParentId) {
+        return new EbProductCategoryDao().updateProductCategoryByEpcId(EpcId, EpcName, EpcParentId);
+    }
+
+    public boolean deleteProductCategoryByEpcId(String EpcId) {
+        return new EbProductCategoryDao().deleteProductCategoryByEpcId(EpcId);
+    }
+
+    public EbProductCategory getProductCategory(String EpcId) {
+        return new EbProductCategoryDao().getProductCategoryByEpcId(EpcId);
+    }
+
+    //  获取所有的根分类，根分类即其父分类为0
+    public List<EbProductCategory> getRootProductCategory() {
+        List<EbProductCategory> all = this.getProductCategoryTable();
+        List<EbProductCategory> res = new ArrayList<EbProductCategory>();
+        for (EbProductCategory x : all) {
+            if (x.getEpcParentId().compareTo("0") == 0){
+                res.add(x);
+               // System.out.println(x.getEpcName() + " *** ");
+            }
+        }
+        return res;
+    }
+    public boolean deleteProductByEpId(String EpId){
+         return new EbProductDao().deleteProductByEpId(EpId);
+    }
+    public EbProduct getProductByEpId(String EpId){
+        return new EbProductDao().getProductByEpId(EpId);
+    }
+    public boolean insertProduct(List<String> ColumnList , List<String> params){
+        return new EbProductDao().insertProduct(ColumnList,params);
+    }
+    public boolean updateProduct(List<String> ColumnList , List<String> params){
+        return new EbProductDao().updateProductByEpId(ColumnList,params);
     }
 }

@@ -17,22 +17,16 @@
 					<th>手机</th>
 					<th>操作</th>
 				</tr>
+				<c:forEach var="user" items="${userlist}">
 				<tr>
-					<td class="first w4 c">1</td>
-					<td class="w1 c">张三丰</td>
-					<td class="w2 c">男</td>
-					<td>fengsan.zhang@prd.com</td>
-					<td class="w4 c">13888888888</td>
-					<td class="w1 c"><a href="user-modify.jsp">修改</a> <a href="javascript:Delete(1);">删除</a></td>
+					<td class="first w4 c">${user.getEuUserId()}</td>
+					<td class="w1 c">${user.getEuUserName()}</td>
+					<td class="w2 c">${user.getEuSex()}</td>
+					<td>${user.getEuEmail()}</td>
+					<td class="w4 c">${user.getEuMobile()}</td>
+					<td class="w1 c"><a href="/ManageUserModify.Servlet?euuserid=${user.getEuUserId()}">修改</a> <a href="/ManageUser.Servlet?eudelete=true&euuserid=${user.getEuUserId()}">删除</a></td>
 				</tr>
-				<tr>
-					<td class="first w4 c">2</td>
-					<td class="w1 c">杨二郎</td>
-					<td class="w2 c">男</td>
-					<td>fengsan.zhang@prd.com</td>
-					<td class="w4 c">13888888888</td>
-					<td class="w1 c"><a href="user-modify.jsp">修改</a> <a href="javascript:Delete(1);">删除</a></td>
-				</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</div>

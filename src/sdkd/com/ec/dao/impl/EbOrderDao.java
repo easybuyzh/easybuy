@@ -14,21 +14,33 @@ import java.util.List;
  */
 public class EbOrderDao extends BaseDao {
     public String createNewOrderByUserId(String UserId, String Cost) {
-        String sql = "insert into easybuy_order(eo_id ,eo_user_id , eo_create_time , eo_cost) values (?,?,?,?)";
+        String sql = "insert into easybuy_order(eo_user_id , eo_create_time , eo_cost) values (?,?,?)";
         List<String> params = new ArrayList<String>();
 
-        Integer OrderId = Integer.valueOf(new BaseDao().getPro("NumberOfCommitedOrders")) + 1;
-        new BaseDao().setPro("NumberOfCommitedOrders" , OrderId.toString());
-        //在这里从配置文件加载出一个新的从未使用过的OrderId
-        params.add(OrderId.toString());
         params.add(UserId);
         params.add(Utils.getNowTimeInMysqlFormat());
         params.add(Cost);
-        int res = this.exeucteModify(sql , params);
-        if(res > 0 ){
-               return OrderId.toString();
+        int res = this.exeucteModify(sql, params);
+        if (res > 0) {
+             List<EbOrder> all = this.getOrderByUserId(UserId);
+             int max_ = 0;
+             for(EbOrder x : all){
+                  max_ = Math.max(max_ , Integer.valueOf(x.getEoId()));
+             }
+             return String.valueOf(max_);
         }
         return null;
+    }
+
+    public List<EbOrder> getOrderByUserId(String userId) {
+        List<EbOrder> all = this.getOrders();
+        List<EbOrder> res = new ArrayList<EbOrder>();
+        for(EbOrder x : all){
+              if(x.getEoUserId().compareTo(userId) == 0){
+                     res.add(x);
+              }
+        }
+        return res;
     }
 
     public List<EbOrder> getOrders() {
@@ -50,10 +62,20 @@ public class EbOrderDao extends BaseDao {
         }
         return null;
     }
-    public boolean deleteOrderByOrderId(String OrderId){
+
+    public boolean deleteOrderByOrderId(String OrderId) {
         String sql = "delete from easybuy_order where eo_id = ?";
         List<String> params = new ArrayList<String>();
         params.add(OrderId);
+        int res = this.exeucteModify(sql, params);
+        return (res > 0);
+    }
+
+    public boolean updateOrderByOrderId(String EoId, String EoStatus) {
+        String sql = "update easybuy_order set eo_status = ?  where eo_id = ?";
+        List<String> params = new ArrayList<String>();
+        params.add(EoStatus);
+        params.add(EoId);
         int res = this.exeucteModify(sql, params);
         return (res > 0);
     }

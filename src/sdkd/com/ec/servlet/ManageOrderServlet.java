@@ -21,9 +21,12 @@ public class ManageOrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
           String eodelete = request.getParameter("eodelete");
           String eoid = request.getParameter("eoid");
-          if(eodelete != null){
-                new TableService().deleteOrderByEoId(eoid);
-                return ;
+          if(eodelete != null) {
+              new TableService().deleteOrderByEoId(eoid);
+              request.getRequestDispatcher("/manage/manage-result.jsp").forward(request, response);
+              return;
           }
+          request.setAttribute("orderlist",new TableService().getOrderViews());
+          request.getRequestDispatcher("manage/order.jsp").forward(request,response);
     }
 }

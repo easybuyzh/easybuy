@@ -114,7 +114,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-       <welcome-file>Index.Servlet</welcome-file>
+        <welcome-file>Index.Servlet</welcome-file>
     </welcome-file-list>
 
     <servlet>
@@ -186,5 +186,87 @@
     <servlet-mapping>
         <servlet-name>ManageOrderModifyServlet</servlet-name>
         <url-pattern>/ManageOrderModify.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageUserServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageUserServlet</servlet-name>
+        <url-pattern>/ManageUser.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageUserModifyServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageUserModifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageUserModifyServlet</servlet-name>
+        <url-pattern>/ManageUserModify.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageUserAddServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageUserAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageUserAddServlet</servlet-name>
+        <url-pattern>/ManageUserAdd.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageProductServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageProductServlet</servlet-name>
+        <url-pattern>/ManageProduct.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageProductAddServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageProductAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageProductAddServlet</servlet-name>
+        <url-pattern>/ManageProductAdd.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageProductModifyServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageProductModifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageProductModifyServlet</servlet-name>
+        <url-pattern>/ManageProductModify.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageProductClassServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageProductClassServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageProductClassServlet</servlet-name>
+        <url-pattern>/ManageProductClass.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageProductClasstAddServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageProductClasstAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageProductClasstAddServlet</servlet-name>
+        <url-pattern>/ManageProductClassAdd.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageProductClassModifyServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageProductClassModifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageProductClassModifyServlet</servlet-name>
+        <url-pattern>/ManageProductClassModify.Servlet</url-pattern>
+
     </servlet-mapping>
 </web-app>

@@ -25,7 +25,7 @@ eu_status
     String EuBirthday;
     String EuIdentityCode;
     String EuEmail;
-    String EuMoblie;
+    String EuMobile;
     String EuAddress;
     String EuStatus;
 
@@ -85,12 +85,12 @@ eu_status
         EuEmail = euEmail;
     }
 
-    public String getEuMoblie() {
-        return EuMoblie;
+    public String getEuMobile() {
+        return EuMobile;
     }
 
-    public void setEuMoblie(String euMoblie) {
-        EuMoblie = euMoblie;
+    public void setEuMobile(String euMobile) {
+        EuMobile = euMobile;
     }
 
     public String getEuAddress() {

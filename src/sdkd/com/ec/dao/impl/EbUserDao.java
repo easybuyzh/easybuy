@@ -2,6 +2,7 @@ package sdkd.com.ec.dao.impl;
 
 
 import sdkd.com.ec.dao.BaseDao;
+import sdkd.com.ec.model.EbNews;
 import sdkd.com.ec.model.EbUser;
 
 import java.sql.ResultSet;
@@ -19,6 +20,12 @@ public class EbUserDao extends BaseDao {
                 EbUser te = new EbUser();
                 te.setEuUserName(rs.getString("eu_user_name"));
                 te.setEuPassword(rs.getString("eu_password"));
+                te.setEuUserId(rs.getString("eu_user_id"));
+                te.setEuPassword(rs.getString("eu_password"));
+                te.setEuAddress(rs.getString("eu_address"));
+                te.setEuEmail(rs.getString("eu_email"));
+                te.setEuSex(rs.getString("eu_sex"));
+                te.setEuMobile(rs.getString("eu_mobile"));
                 all.add(te);
             }
         } catch (SQLException e) {
@@ -70,7 +77,55 @@ public class EbUserDao extends BaseDao {
         params.add(id);
         params.add(EuUserName);
         params.add(EuPassword);
+        int res = this.exeucteModify(sql, params);
+        return (res > 0);
+    }
+
+    public boolean InsertUser(List<String> columnName, List<String> params) {
+        String src = "";
+        for (int i = 0; i < columnName.size(); i++) {
+            if (i == 0) src += "(";
+            if (i > 0) src += ",";
+            src += columnName.get(i);
+            if (i == params.size() - 1) src += ")";
+        }
+        String str = "";
+        for (int i = 0; i < params.size(); i++) {
+            if (i == 0) str += "(";
+            if (i > 0) str += ",";
+            str += "?";
+            if (i == params.size() - 1) str += ")";
+        }
+        String sql = "insert into easybuy_user " + src + " values " + str;
         int res = this.exeucteModify(sql,params);
         return (res > 0);
+    }
+
+    public boolean deleteUserByEuUserId(String EuUserId) {
+        String sql = "delete from easybuy_user where eu_user_id = ?";
+        List<String> params = new ArrayList<String>();
+        params.add(EuUserId);
+        int res = this.exeucteModify(sql, params);
+        return (res > 0);
+    }
+
+    public boolean updateUserByUserId(String EuUserId, List<String> params) {
+        String sql = "update easybuy_user set eu_user_name = ? ,eu_password = ? " +
+                ",eu_sex = ? ,eu_birthday = ?,eu_mobile = ? ," +
+                "eu_email = ? ,eu_address = ? where eu_user_id = ?";
+
+        params.add(EuUserId);
+        int res = this.exeucteModify(sql, params);
+        return (res > 0);
+    }
+
+    public EbUser getUserByUserId(String EuUserId) {
+        List<EbUser> all = this.getEbUsers();
+        for (EbUser x : all) {
+            if (x.getEuUserId().compareTo(EuUserId) == 0) {
+                return x;
+            }
+        }
+        return null;
     }
 }

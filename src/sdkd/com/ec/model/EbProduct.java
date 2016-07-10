@@ -22,7 +22,7 @@ ep_file_name
      String EpStock;
      String EpcId;//分类ID
      String EpcChildId; //二级分类ID
-     String EpFileName; //文件名
+     String EpBarCode; //文件名
      String EpProductIcon;
      String EpBargain;
      String EpBaPrice;
@@ -124,11 +124,11 @@ ep_file_name
         EpcChildId = epcChildId;
     }
 
-    public String getEpFileName() {
-        return EpFileName;
+    public String getEpBarCode() {
+        return EpBarCode;
     }
 
-    public void setEpFileName(String epFileName) {
-        EpFileName = epFileName;
+    public void setEpBarCode(String epBarCode) {
+        EpBarCode = epBarCode;
     }
 }
