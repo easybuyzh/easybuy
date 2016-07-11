@@ -36,7 +36,7 @@
     </div>
     <div class="navbar">
         <ul class="clearfix">
-            <li class="current"><a href="#">首页</a></li>
+            <li class="current"><a href="Index.Servlet">首页</a></li>
             <li><a href="#"></a></li>
             <li><a href="#">百货</a></li>
             <li><a href="#">品牌</a></li>
