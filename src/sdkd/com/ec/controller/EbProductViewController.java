@@ -26,6 +26,11 @@ public class EbProductViewController extends HttpServlet {
 
         new TableService().ViewProductForOneTime(request.getParameter("id"));
         //增加产品的浏览量
+        String userName = (String)request.getSession().getAttribute("userName");
+        if(userName != null){
+            //在用户登录状态需要记录用户最近的浏览记录
+            new TableService().RecordBrowse(userName , request.getParameter("id"));
+        }
 
         request.setAttribute("product", new TableService().getProductById(request.getParameter("id")));
         request.setAttribute("newslist",new TableService().getNewsTable());
@@ -33,7 +38,9 @@ public class EbProductViewController extends HttpServlet {
         request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
         request.setAttribute("parentid",request.getParameter("parentid"));
         request.setAttribute("category",request.getParameter("category"));
-        //System.out.println(request.getParameter("parentid") + " -- " + request.getParameter("category"));
+        if(userName!=null){
+             request.setAttribute("recentbrowselist",new TableService().getRecentBrowseList(userName));
+        }
 
         //跳转
         request.getRequestDispatcher("/product-view.jsp").forward(request, response);

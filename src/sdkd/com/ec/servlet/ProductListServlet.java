@@ -25,7 +25,10 @@ public class ProductListServlet extends HttpServlet {
         request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
         request.setAttribute("parentid",request.getParameter("id"));
         request.setAttribute("category",request.getParameter("category"));
-
+        String userName = (String)request.getSession().getAttribute("userName");
+        if(userName!=null){
+            request.setAttribute("recentbrowselist",new TableService().getRecentBrowseList(userName));
+        }
         request.getRequestDispatcher("product-list.jsp").forward(request,response);
     }
 }

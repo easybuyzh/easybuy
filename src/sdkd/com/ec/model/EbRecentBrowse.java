@@ -6,7 +6,7 @@ package sdkd.com.ec.model;
 public class EbRecentBrowse  {
       public String ErId;
       public String ErUserId;
-      public String ErProdcutId;
+      public String ErProductId;
       public String ErProductName;
       public String ErProductIcon;
 
@@ -26,12 +26,12 @@ public class EbRecentBrowse  {
         ErUserId = erUserId;
     }
 
-    public String getErProdcutId() {
-        return ErProdcutId;
+    public String getErProductId() {
+        return ErProductId;
     }
 
-    public void setErProdcutId(String erProdcutId) {
-        ErProdcutId = erProdcutId;
+    public void setErProductId(String erProductId) {
+        ErProductId = erProductId;
     }
 
     public String getErProductName() {

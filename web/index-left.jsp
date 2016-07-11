@@ -17,7 +17,9 @@
                     <dt>${procat1.getEpcName()}</dt>
                     <c:forEach var="procat2" items="${productcategorylist}">
                         <c:if test="${procat2.getEpcParentId()==procat1.getEpcId()}">
-                            <li><a href="/ProductList.Servlet?id=${procat2.getEpcId()}&category=${procat2.getEpcName()}">${procat2.getEpcName()}</a></li>
+                            <li>
+                                <a href="/ProductList.Servlet?id=${procat2.getEpcId()}&category=${procat2.getEpcName()}">${procat2.getEpcName()}</a>
+                            </li>
                         </c:if>
                     </c:forEach>
                 </c:if>
@@ -27,11 +29,11 @@
     <div class="spacer"></div>
     <div class="last-view">
         <h2>最近浏览</h2>
-        <dl class="clearfix">
-            <dt><img src="images/product/0_tiny.gif"/></dt>
-            <dd><a href="product-view.jsp">法国德菲丝松露精品巧克力500g/盒</a></dd>
-            <dt><img src="images/product/0_tiny.gif"/></dt>
-            <dd><a href="product-view.jsp">法国德菲丝松露精品巧克力500g/盒</a></dd>
+        <dl class="product clearfix">
+            <c:forEach var="product" items="${recentbrowselist}">
+                <dt><img src="images/product/${product.getErProductIcon()}" width="50" height="50"/></dt>
+                <dd><a href="/ProductView.Servlet?id=${product.getErProductId()}">${product.getErProductName()}</a></dd>
+            </c:forEach>
         </dl>
     </div>
 </div>

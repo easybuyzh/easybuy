@@ -4,6 +4,7 @@ import sdkd.com.ec.dao.impl.EbNewsDao;
 import sdkd.com.ec.dao.impl.EbProductDao;
 import sdkd.com.ec.model.EbNews;
 import sdkd.com.ec.model.EbProduct;
+import sdkd.com.ec.model.EbRecentBrowse;
 import sdkd.com.ec.service.TableService;
 
 import javax.servlet.ServletException;
@@ -30,6 +31,12 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
         request.setAttribute("noticelist",new TableService().getNoticeTable());
 
+        String userName = (String)request.getSession().getAttribute("userName");
+        if(userName != null){
+            List<EbRecentBrowse> all = new TableService().getRecentBrowseList(userName);
+            //System.out.println(all.get(0).getErProductName() + "%%%%%%%%^^^^^^^^^^^^");
+            request.setAttribute("recentbrowselist",new TableService().getRecentBrowseList(userName));
+        }
         //跳转
         request.getRequestDispatcher("/index.jsp").forward(request,response);
 

@@ -170,9 +170,10 @@ public class TableService extends BaseDao {
         params.add(EpId);
         return new EbProductDao().updateProductByEpId(columnName, params);
     }
-    public int getProductStockByEpId(String EpId){
+
+    public int getProductStockByEpId(String EpId) {
         EbProduct te = new EbProductDao().getProductByEpId(EpId);
-        return Integer.valueOf(te.getEpStock()) ;
+        return Integer.valueOf(te.getEpStock());
     }
 
     public boolean ReplyComment(String EcId, String Reply) {
@@ -278,5 +279,16 @@ public class TableService extends BaseDao {
 
     public boolean updateProduct(List<String> ColumnList, List<String> params) {
         return new EbProductDao().updateProductByEpId(ColumnList, params);
+    }
+
+    public boolean RecordBrowse(String userName, String EpId) {
+        if (userName == null) return false;
+        String userId = new EbUserDao().getUserIdByName(userName);
+        EbProduct te = new EbProductDao().getProductByEpId(EpId);
+        return new EbRecentBrowseDao().insertNewBrowse(userId, te.getEpId(), te.getEpName(), te.getEpProductIcon());
+    }
+    public  List<EbRecentBrowse> getRecentBrowseList(String userName){
+        String userId = new EbUserDao().getUserIdByName(userName);
+        return new EbRecentBrowseDao().getRecentBrowseByUserId(userId,"desc");
     }
 }
