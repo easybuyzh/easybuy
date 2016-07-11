@@ -16,7 +16,7 @@
             </c:forEach>
         </ul>
     </div>
-    <div class="spacer"></div>a
+    <div class="spacer"></div>
     <div class="news-list">
         <h4>新闻动态</h4>
         <ul>
