@@ -19,8 +19,16 @@
 <div id="header" class="wrap">
     <div id="logo"><img src="images/logo.gif"/></div>
     <div class="help">
+        <c:if test="${ismanager == 'true'}">
+            <a href="/manage/index.jsp">进入后台管理页面</a>
+        </c:if>
         <c:if test="${userName!=null}">
-            <a href="#">用户: ${userName}</a>
+           <c:if test="${ismanager == 'true'}">
+               <a href="#">管理员: ${userName}</a>
+           </c:if>
+            <c:if test="${ismanager == null}">
+                <a href="#">用户: ${userName}</a>
+            </c:if>
         </c:if>
         <a href="/Shopping.Servlet" class="shopping">购物车</a>
 

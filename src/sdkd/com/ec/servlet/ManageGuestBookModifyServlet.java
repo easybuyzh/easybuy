@@ -20,6 +20,11 @@ public class ManageGuestBookModifyServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //if(new TableService().isManager((String)request.getSession().getAttribute("userName")) == false){
+           // response.sendRedirect("/accessdenied.jsp");
+            //非管理员拒绝访问
+         //   return ;
+       // }
         String EcId = request.getParameter("ecid");
         String EcReply = request.getParameter("ecreply");
         String EcDelete = request.getParameter("ecdelete");
@@ -42,4 +47,5 @@ public class ManageGuestBookModifyServlet extends HttpServlet {
         request.setAttribute("comment", new TableService().getCommentByEcId(EcId));
         request.getRequestDispatcher("manage/guestbook-modify.jsp").forward(request, response);
     }
+
 }

@@ -12,7 +12,7 @@
         <h4>最新公告</h4>
         <ul>
             <c:forEach var="no" items="${noticelist}">
-                <li><a href="/NoticeView.Servlet?id=${no.getNoticeId()}" target="_blank">${no.getNoticeTitle()}</a></li>
+                <li><a href="/NoticeView.Servlet?id=${no.getNoticeId()}">${no.getNoticeTitle()}</a></li>
             </c:forEach>
         </ul>
     </div>
@@ -21,7 +21,7 @@
         <h4>新闻动态</h4>
         <ul>
             <c:forEach var="news" items="${newslist}">
-                <li><a href="/Newsview.Servlet?id=${news.enId}" target="_blank">${news.enTitle}</a></li>
+                <li><a href="/Newsview.Servlet?id=${news.enId}">${news.enTitle}</a></li>
             </c:forEach>
         </ul>
     </div>

@@ -28,6 +28,7 @@ eu_status
     String EuMobile;
     String EuAddress;
     String EuStatus;
+    String EuRole;
 
     public String getEuUserId() {
         return EuUserId;
@@ -107,5 +108,13 @@ eu_status
 
     public void setEuStatus(String euStatus) {
         EuStatus = euStatus;
+    }
+
+    public String getEuRole() {
+        return EuRole;
+    }
+
+    public void setEuRole(String euRole) {
+        EuRole = euRole;
     }
 }

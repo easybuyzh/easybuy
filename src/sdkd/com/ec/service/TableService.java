@@ -291,4 +291,12 @@ public class TableService extends BaseDao {
         String userId = new EbUserDao().getUserIdByName(userName);
         return new EbRecentBrowseDao().getRecentBrowseByUserId(userId,"desc");
     }
+    public EbUser getUserByUserName(String userName){
+        return this.getUserByUserId(new EbUserDao().getUserIdByName(userName));
+    }
+    public  boolean isManager(String userName){
+        if(userName == null) return false;
+        EbUser user = this.getUserByUserName(userName);
+        return (Integer.valueOf(user.getEuRole()) == 1);
+    }
 }

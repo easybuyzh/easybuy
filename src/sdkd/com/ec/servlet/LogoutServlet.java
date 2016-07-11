@@ -18,6 +18,8 @@ public class LogoutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
            request.getSession().removeAttribute("userName");
+           if(request.getSession().getAttribute("ismanager")!=null)
+                 request.getSession().removeAttribute("ismanager");
            request.getRequestDispatcher("/Index.Servlet").forward(request,response);
     }
 }

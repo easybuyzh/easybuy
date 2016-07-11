@@ -26,6 +26,7 @@ public class EbUserDao extends BaseDao {
                 te.setEuEmail(rs.getString("eu_email"));
                 te.setEuSex(rs.getString("eu_sex"));
                 te.setEuMobile(rs.getString("eu_mobile"));
+                te.setEuRole(rs.getString("eu_role"));
                 all.add(te);
             }
         } catch (SQLException e) {
@@ -70,6 +71,8 @@ public class EbUserDao extends BaseDao {
     }
 
     public boolean InsertUser(String EuUserName, String EuPassword) {
+        if(getUserIdByName(EuUserName) != null)  //该用户名已存在注册失败
+                return false;
         String sql = "insert into easybuy_user (eu_user_name,eu_password) values(?,?)";
         List<String> params = new ArrayList<String>();
         params.add(EuUserName);

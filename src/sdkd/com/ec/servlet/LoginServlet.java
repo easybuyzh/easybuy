@@ -17,33 +17,46 @@ import java.io.IOException;
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-             doGet(request,response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         String userName = Utils.JspStringFormat(request.getParameter("userName"));
-         String passWord = Utils.JspStringFormat(request.getParameter("passWord"));
-         String veryCode = request.getParameter("veryCode");
+        //已登录的情况下点击该链接会
+        if (request.getSession().getAttribute("userName") != null) {
+            response.sendRedirect("/Index.Servlet");
+            return;
+        }
+        String userName = Utils.JspStringFormat(request.getParameter("userName"));
+        String passWord = Utils.JspStringFormat(request.getParameter("passWord"));
+        String veryCode = request.getParameter("veryCode");
 
-         if("shoppingservlet".equals((String)request.getSession().getAttribute("comfrom"))){
-             if(new TableService().IsUserExists(userName,passWord) == true){
-                 request.getSession().setAttribute("userName",userName);
-                 request.getSession().removeAttribute("comfrom");
-                 response.sendRedirect("/Shopping.Servlet");
-                 //问什么这里只能使用重定向才能跳转过去
-             }  else {
-                 request.setAttribute("hint","用户名或密码错误");
-                 request.getRequestDispatcher("login.jsp").forward(request,response);
-             }
-             return ;
-         }
-         if(new TableService().IsUserExists(userName,passWord) == true){
-             request.getSession().setAttribute("userName",userName);
-             request.getRequestDispatcher("/Index.Servlet").forward(request,response);
-         }  else {
-                request.setAttribute("hint","用户名或密码错误");
-                request.getRequestDispatcher("login.jsp").forward(request,response);
-         }
+        if ("shoppingservlet".equals((String) request.getSession().getAttribute("comfrom"))) {
+            if (new TableService().IsUserExists(userName, passWord) == true) {
+                request.getSession().setAttribute("userName", userName);
+                request.getSession().removeAttribute("comfrom");
+                int userRole = Integer.valueOf((new TableService().getUserByUserName(userName).getEuRole()));
+                if (userRole == 1) {
+                    request.getSession().setAttribute("ismanager", "true");
+                }
+                request.getRequestDispatcher("/Shopping.Servlet").forward(request, response);
+                //问什么这里只能使用重定向才能跳转过去
+            } else {
+                request.setAttribute("hint", "用户名或密码错误");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+            return;
+        }
+        if (new TableService().IsUserExists(userName, passWord) == true) {
+            request.getSession().setAttribute("userName", userName);
+            int userRole = Integer.valueOf((new TableService().getUserByUserName(userName).getEuRole()));
+            if (userRole == 1) {
+                request.getSession().setAttribute("ismanager", "true");
+            }
+            request.getRequestDispatcher("/Index.Servlet").forward(request, response);
+        } else {
+            request.setAttribute("hint", "用户名或密码错误");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 
 }

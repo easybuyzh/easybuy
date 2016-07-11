@@ -2,10 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<jsp:include page="header.jsp"/>
-<div id="position" class="wrap">
-	您现在的位置：<a href="/Index.Servlet">易买网</a> &gt; 购物车
-</div>
 <div class="wrap">
 	<div id="shopping">
 		<div class="shadow">
