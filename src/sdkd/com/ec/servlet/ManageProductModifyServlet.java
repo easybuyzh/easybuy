@@ -60,7 +60,6 @@ public class ManageProductModifyServlet extends HttpServlet {
             return ;
         }
 
-      //  System.out.println(new TableService().getProductById(EpId).getEpPrice() + " &&&& ");
         request.setAttribute("product",new TableService().getProductById(EpId));
         request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
         request.getRequestDispatcher("/manage/product-modify.jsp").forward(request,response);

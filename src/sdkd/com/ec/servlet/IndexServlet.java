@@ -33,16 +33,5 @@ public class IndexServlet extends HttpServlet {
         //跳转
         request.getRequestDispatcher("/index.jsp").forward(request,response);
 
-        /**
-         * login
-         */
-        /*EbUser user =  login();
-        request.getSession().setAttribute("user",user);*/
-        /*String paraId = request.getParameter("id");
-        if(paraId!=null && !"".equals(paraId)){
-            int id = Integer.valueOf(id);
-            EbNews news = newsDao.getNewsById(id);
-            request.setAttribute("news",news);
-        }*/
     }
 }

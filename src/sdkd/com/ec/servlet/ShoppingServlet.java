@@ -23,15 +23,26 @@ public class ShoppingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
             String CommitOrder = request.getParameter("CommitOrder");
+            String userName = (String)request.getSession().getAttribute("userName");
             if(CommitOrder != null){
                   //这里不再判断userName是否为空，是因为这个值是由该页面内部的键提交的
-                  new TableService().CommitOrderByCart((String)request.getSession().getAttribute("userName"));
-                  response.sendRedirect("shopping-result.jsp");
+
+                  int Number = new TableService().getCart(userName).size();
+                  if(Number > 0){
+                      boolean res = new TableService().CommitOrderByCart(userName);
+                      if(res == false){
+                          request.setAttribute("commitfailed","true");
+                      }
+                      //当购物车里有商品时才提交订单
+                  }   else{
+                      request.setAttribute("cartempty","true");
+                      //没有商品则向shopping-result页面传递购物车为空的信息
+                  }
+                  request.getRequestDispatcher("shopping-result.jsp").forward(request,response);
                   return ;
             }
 
 
-            String userName = (String)request.getSession().getAttribute("userName");
             if(request.getParameter("productid") != null){
                 System.out.println(" &&& " + request.getParameter("productid"));
                 request.getSession().setAttribute("productid",request.getParameter("productid"));

@@ -23,12 +23,12 @@ public class ManageUserAddServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String EuUserName = Utils.JspStringFormat(request.getParameter("euusername"));
-        String EuPassword = Utils.JspStringFormat(request.getParameter("eupassword"));
-        String EuSex = Utils.JspStringFormat(request.getParameter("eusex"));
+        String EuUserName = request.getParameter("euusername");
+        String EuPassword =request.getParameter("eupassword");
+        String EuSex = request.getParameter("eusex");
         String EuBirthday = request.getParameter("birthyear") + "-" +  request.getParameter("birthmonth") + "-" + request.getParameter("birthday");
-        String EuMobile = Utils.JspStringFormat(request.getParameter("eumobile"));
-        String EuEmail = Utils.JspStringFormat(request.getParameter("euemail"));
+        String EuMobile = request.getParameter("eumobile");
+        String EuEmail = request.getParameter("euemail");
 
         List<String> columnName = new ArrayList<String>();
         List<String> params = new ArrayList<String>();

@@ -27,7 +27,7 @@ public class EbCommentDao extends BaseDao {
                 te.setEcCreateTime(rs.getString("ec_create_time"));
                 te.setEcReplyTime(rs.getString("ec_reply_time"));
                 te.setEcNickName(rs.getString("ec_nick_name"));
-                if("null".compareTo(te.getEcReply()) == 0 || te.getEcReply() == null)
+                if(te.getEcReply() == null || "null".compareTo(te.getEcReply()) == 0)
                         te.setEcReply(null);
                 System.out.println(te.getEcNickName() + " ---  ");
                 //添加到集合中
@@ -45,7 +45,6 @@ public class EbCommentDao extends BaseDao {
         params.add(content);
         params.add(name);
         params.add(datetime);
-       // System.out.println(id + " -->  " + name + " " + content + " " + datetime);
         int res = this.exeucteModify(sql, params);
         return (res > 0);
     }
@@ -74,7 +73,7 @@ public class EbCommentDao extends BaseDao {
             te.setEcCreateTime(rs.getString("ec_create_time"));
             te.setEcReplyTime(rs.getString("ec_reply_time"));
             te.setEcNickName(rs.getString("ec_nick_name"));
-            if("null".compareTo(te.getEcReply()) == 0 || te.getEcReply() == null)
+            if(te.getEcReply() == null || "null".compareTo(te.getEcReply()) == 0 )
                 te.setEcReply(null);
             return te;
         } catch (SQLException e) {

@@ -13,7 +13,18 @@
 			<em class="corner rt"></em>
 			<div class="box">
 				<div class="msg">
-					<p>恭喜：购买成功！</p>
+
+					<c:choose>
+						<c:when test="${cartempty == null && commitfailed == null}">
+							<p>恭喜：购买成功！</p>
+						</c:when>
+						<c:when test="${cartempty == 'true'}">
+							<p>您还没有选购任何商品，赶快去选购吧!!</p>
+						</c:when>
+						<c:otherwise>
+							<p>抱歉您提交的订单失败!</p>
+						</c:otherwise>
+					</c:choose>
 					<p>正在进入首页...</p>
 					<script type="text/javascript">
 						setTimeout("location.href='/Index.Servlet'", 3000);

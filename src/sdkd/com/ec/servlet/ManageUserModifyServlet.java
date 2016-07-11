@@ -22,13 +22,13 @@ public class ManageUserModifyServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String EuUserName = Utils.JspStringFormat(request.getParameter("euusername"));
-        String EuPassword = Utils.JspStringFormat(request.getParameter("eupassword"));
-        String EuSex = Utils.JspStringFormat(request.getParameter("eusex"));
+        String EuUserName = request.getParameter("euusername");
+        String EuPassword = request.getParameter("eupassword");
+        String EuSex = request.getParameter("eusex");
         String EuBirthday = request.getParameter("birthyear") + "-" +  request.getParameter("birthmonth") + "-" + request.getParameter("birthday");
-        String EuMobile = Utils.JspStringFormat(request.getParameter("eumobile"));
-        String EuEmail = Utils.JspStringFormat(request.getParameter("euemail"));
-        String EuAddress = Utils.JspStringFormat(request.getParameter("euaddress"));
+        String EuMobile = request.getParameter("eumobile");
+        String EuEmail = request.getParameter("euemail");
+        String EuAddress = request.getParameter("euaddress");
 
         //System.out.println(request.getParameter("euusername") + " ****" +  Utils.JspStringFormat(request.getParameter("euusername")));
 

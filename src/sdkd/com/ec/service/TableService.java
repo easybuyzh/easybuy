@@ -129,15 +129,50 @@ public class TableService extends BaseDao {
     }
 
     /*
-    提交订单功能，要先创建一个新的订单 , 并将购物车里的商品添加到OrderDetail表格中，并清空该用户的购物车
+    提交订单功能，
+                  1 对应商品数量减少
+                  2 要先创建一个新的订单 ,
+                  3 并将购物车里的商品添加到OrderDetail表格中，
+                  4 并清空该用户的购物车
     */
-    public void CommitOrderByCart(String userName) {
-        String OrderId = new EbOrderDao().createNewOrderByUserId(new EbUserDao().getUserIdByName(userName), getCartCost(userName));
+    public boolean CommitOrderByCart(String userName) {
         List<EbViewCartDetail> all = getCart(userName);
+        for (EbViewCartDetail x : all) {
+            if (this.getProductStockByEpId(x.getEcaProductId()) < Integer.valueOf(x.getEcaProductCount()))
+                return false;
+            //库存不够返回false
+        }
+        for (EbViewCartDetail x : all) {
+            if (this.updateProductStockByEpId(x.getEcaProductId(), -1 * Integer.valueOf(x.getEcaProductCount())) == false)
+                return false;
+            //更改商品库存失败时返回false
+        }
+        String OrderId = new EbOrderDao().createNewOrderByUserId(new EbUserDao().getUserIdByName(userName), getCartCost(userName));
         for (EbViewCartDetail x : all) {
             new EbOrderDetailDao().insertOrderDetail(OrderId, x.getEcaProductId(), x.getEcaProductCount());
         }
         new EbCartDao().clearCartbyuserId(new EbUserDao().getUserIdByName(userName));
+        return true;
+    }
+
+    /*
+        用于更新商品库存的函数，当change（可正可负） 使得stock小于零是返回false
+    */
+    public boolean updateProductStockByEpId(String EpId, int change) {
+        EbProduct te = new EbProductDao().getProductByEpId(EpId);
+        Integer stock = Integer.valueOf(te.getEpStock()) + change;
+        if (stock < 0) return false;
+        List<String> columnName = new ArrayList<String>();
+        List<String> params = new ArrayList<String>();
+        columnName.add("ep_stock");
+        params.add(stock.toString());
+        columnName.add("ep_id");
+        params.add(EpId);
+        return new EbProductDao().updateProductByEpId(columnName, params);
+    }
+    public int getProductStockByEpId(String EpId){
+        EbProduct te = new EbProductDao().getProductByEpId(EpId);
+        return Integer.valueOf(te.getEpStock()) ;
     }
 
     public boolean ReplyComment(String EcId, String Reply) {
@@ -221,23 +256,27 @@ public class TableService extends BaseDao {
         List<EbProductCategory> all = this.getProductCategoryTable();
         List<EbProductCategory> res = new ArrayList<EbProductCategory>();
         for (EbProductCategory x : all) {
-            if (x.getEpcParentId().compareTo("0") == 0){
+            if (x.getEpcParentId().compareTo("0") == 0) {
                 res.add(x);
-               // System.out.println(x.getEpcName() + " *** ");
+                // System.out.println(x.getEpcName() + " *** ");
             }
         }
         return res;
     }
-    public boolean deleteProductByEpId(String EpId){
-         return new EbProductDao().deleteProductByEpId(EpId);
+
+    public boolean deleteProductByEpId(String EpId) {
+        return new EbProductDao().deleteProductByEpId(EpId);
     }
-    public EbProduct getProductByEpId(String EpId){
+
+    public EbProduct getProductByEpId(String EpId) {
         return new EbProductDao().getProductByEpId(EpId);
     }
-    public boolean insertProduct(List<String> ColumnList , List<String> params){
-        return new EbProductDao().insertProduct(ColumnList,params);
+
+    public boolean insertProduct(List<String> ColumnList, List<String> params) {
+        return new EbProductDao().insertProduct(ColumnList, params);
     }
-    public boolean updateProduct(List<String> ColumnList , List<String> params){
-        return new EbProductDao().updateProductByEpId(ColumnList,params);
+
+    public boolean updateProduct(List<String> ColumnList, List<String> params) {
+        return new EbProductDao().updateProductByEpId(ColumnList, params);
     }
 }

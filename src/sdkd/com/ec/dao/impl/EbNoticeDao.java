@@ -25,7 +25,6 @@ public class EbNoticeDao extends BaseDao {
             while(res.next())
             {
                 EbNotice ebn =new EbNotice();
-                //ebn.getNoticeId();
                 ebn.setNoticeId(res.getString("notice_id"));
                 ebn.setNoticeContent(res.getString("notice_content"));
                 ebn.setNoticeTitle(res.getString("notice_title"));
