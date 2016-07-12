@@ -22,12 +22,12 @@ public class EbNewsViewController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         EbNewsDao newsDao = new EbNewsDao();
         List<EbNews> list = newsDao.getNews();
         EbNews ebn = null;
         for (EbNews ebn1 : list) {
-            if (ebn1.getEnId().equals(id)) {
+            if (ebn1.getEnId().compareTo(id) == 0) {
                 ebn = ebn1;
                 break;
             }
