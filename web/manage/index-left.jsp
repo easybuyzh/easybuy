@@ -20,6 +20,8 @@
             <dd><a href="/ManageGuestBook.Servlet">留言管理</a></dd>
             <dt>新闻管理</dt>
             <dd><em><a href="/ManageNewsAdd.Servlet">新增</a></em><a href="/ManageNews.Servlet">新闻管理</a></dd>
+            <dt>公告管理</dt>
+            <dd><em><a href="/ManageNoticeAdd.Servlet">新增</a></em><a href="/ManageNotice.Servlet">公告管理</a></dd>
         </dl>
     </div>
 </div>

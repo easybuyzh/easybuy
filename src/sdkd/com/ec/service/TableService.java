@@ -74,6 +74,29 @@ public class TableService extends BaseDao {
         return res;
     }
 
+    /////插入新公告
+    public boolean insertNotice(String notice_title, String notice_content) {
+        return new EbNoticeDao().insertNotice(notice_title, notice_content);
+    }
+    ////通过创建时间删除公告
+    public boolean deleteNoticeByNoticeCreateTime(String NoticeCreateTime) {
+        return new EbNoticeDao().deleteNoticeByNoticeCreateTime(NoticeCreateTime);
+    }
+       ////////更新修改过的公告
+    public boolean updateNoticeByNoticeId(String NoticeId, String NoticeTitle, String NoticeContent) {
+        return new EbNoticeDao().UpdateNoticeByNoticeId(NoticeId, NoticeTitle, NoticeContent);
+    }
+    /////////
+    public EbNotice getNoticeByNoticeTime(String NoticeTime)
+    {
+        return  new EbNoticeDao().getNoticeByNoticeTime(NoticeTime);
+    }
+    public  EbNotice getNoticeByNoticeId(String NoitceId)
+    {
+        return  new EbNoticeDao().getNoticeByNoticeId(NoitceId);
+    }
+
+
     public boolean insertComment(String guestName, String guestContent, String nowTime) {
         EbCommentDao te = new EbCommentDao();
         return te.InsertComment(guestName, guestContent, nowTime);

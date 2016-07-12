@@ -33,13 +33,13 @@ public class EbNoticeController extends ActionSupport implements RequestAware,Se
         //List<EbNotice> list =ebNoticeDao.getNotice();
        // request.setAttribute("ebnoticelist",list);
        String producvtid =  request.getParameter("productid");
-        System.out.print(producvtid);
+       // System.out.print(producvtid);
 
        // request.getRequestDispatcher("/shopping.jsp").forward(request,response);
     }
 
     public  static  void execute_(){
-        System.out.print("*************");
+        //System.out.print("*************");
     }
 
     public void setRequest(Map<String, Object> request) {
