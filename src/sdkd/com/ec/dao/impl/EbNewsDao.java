@@ -20,7 +20,7 @@ public class EbNewsDao extends BaseDao {
             ResultSet rs = this.executeSearch(sql, null);
             while (rs.next()) {
                 EbNews news = new EbNews();
-                news.setEnId(rs.getInt("en_id"));
+                news.setEnId(rs.getString("en_id"));
                 news.setEnTitle(rs.getString("en_title"));
                 news.setEnContent(rs.getString("en_content"));
                 news.setEnCreateTime(rs.getString("en_create_time"));
@@ -34,28 +34,28 @@ public class EbNewsDao extends BaseDao {
         return newsList;
     }
 
-    public boolean deleteNewsByEnCreateTime(String EnCreateTime) {
-        String sql = "delete from easybuy_news where en_create_time = ?";
+    public boolean deleteNewsByEnId(String EnId) {
+        String sql = "delete from easybuy_news where en_id = ?";
         List<String> params = new ArrayList<String>();
-        params.add(EnCreateTime);
+        params.add(EnId);
         int res = this.exeucteModify(sql, params);
         return (res > 0);
     }
 
-    public boolean UpdateNewsByEnCreateTime(String EnCreateTime, String EnTitle, String EnContent) {
-        String sql = "update easybuy_news set en_title = ? ,en_content = ?  where en_create_time = ?";
+    public boolean UpdateNewsByEnId(String EnId, String EnTitle, String EnContent) {
+        String sql = "update easybuy_news set en_title = ? ,en_content = ?  where en_id = ?";
         List<String> params = new ArrayList<String>();
         params.add(EnTitle);
         params.add(EnContent);
-        params.add(EnCreateTime);
+        params.add(EnId);
         int res = this.exeucteModify(sql, params);
         return (res > 0);
     }
 
-    public EbNews getNewByEnCreateTime(String EnCreateTime) {
+    public EbNews getNewByEnId(String EnId) {
         List<EbNews> all = this.getNews();
         for (EbNews x : all) {
-            if (x.getEnCreateTime().compareTo(EnCreateTime) == 0)
+            if (x.getEnId().compareTo(EnId) == 0)
                 return x;
         }
         return null;

@@ -15,10 +15,10 @@
 <body>
 <div id="header" class="wrap">
     <div id="logo"><img src="../images/logo.gif"/></div>
-    <div class="help"><a href="../index.jsp">返回前台页面</a></div>
+    <div class="help"><a href="/Index.Servlet ">返回前台页面</a></div>
     <div class="navbar">
         <ul class="clearfix">
-            <li><a href="Index.Servlet">首页</a></li>
+            <li><a href="/Index.Servlet">首页</a></li>
             <li><a href="user.jsp">用户</a></li>
             <li><a href="product.jsp">商品</a></li>
             <li><a href="order.jsp">订单</a></li>

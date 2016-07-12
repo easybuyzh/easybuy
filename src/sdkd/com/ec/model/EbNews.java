@@ -6,16 +6,16 @@ import java.util.Date;
  * Created by SDUST-132 on 2016/7/6.
  */
 public class EbNews {
-    private Integer enId;
+    private String enId;
     private String enTitle;
     private String enContent;
     private String enCreateTime;
 
-    public Integer getEnId() {
+    public String getEnId() {
         return enId;
     }
 
-    public void setEnId(Integer enId) {
+    public void setEnId(String enId) {
         this.enId = enId;
     }
 

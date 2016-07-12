@@ -49,8 +49,8 @@ public class TableService extends BaseDao {
         return res;
     }
 
-    public EbNews getNewsByEnCreateTime(String EnCreateTime) {
-        return new EbNewsDao().getNewByEnCreateTime(EnCreateTime);
+    public EbNews getNewsByEnId(String EnId) {
+        return new EbNewsDao().getNewByEnId(EnId);
     }
 
     public List<EbProduct> getHotProductList() {
@@ -193,12 +193,12 @@ public class TableService extends BaseDao {
         return new EbCommentDao().deleteCommentByEcId(EcId);
     }
 
-    public boolean deleteNewsByEnCreateTime(String EnCreateTime) {
-        return new EbNewsDao().deleteNewsByEnCreateTime(EnCreateTime);
+    public boolean deleteNewsByEnId(String EnCreateTime) {
+        return new EbNewsDao().deleteNewsByEnId(EnCreateTime);
     }
 
-    public boolean updateNewsByEnCreateTime(String EnCreateTime, String EnTitle, String EnContent) {
-        return new EbNewsDao().UpdateNewsByEnCreateTime(EnCreateTime, EnTitle, EnContent);
+    public boolean updateNewsByEnId(String EnCreateTime, String EnTitle, String EnContent) {
+        return new EbNewsDao().UpdateNewsByEnId(EnCreateTime, EnTitle, EnContent);
     }
 
     public boolean insertNews(String EnTitle, String EnContent) {

@@ -21,14 +21,15 @@ public class ManageNewsModifyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String EnContent = request.getParameter("encontent");
         String EnTitle = request.getParameter("entitle");
-        String EnCreateTime = request.getParameter("encreatetime");
+        String EnId = request.getParameter("enid");
 
+        System.out.println(EnContent + " --> " + EnTitle + "--> " + EnId);
         if (EnContent != null) {
-            new TableService().updateNewsByEnCreateTime(EnCreateTime, EnTitle,EnContent);
+            new TableService().updateNewsByEnId(EnId, EnTitle,EnContent);
             request.getRequestDispatcher("manage/manage-result.jsp").forward(request, response);
             return;
         }
-        request.setAttribute("news",new TableService().getNewsByEnCreateTime(EnCreateTime));
+        request.setAttribute("news",new TableService().getNewsByEnId(EnId));
         request.getRequestDispatcher("manage/news-modify.jsp").forward(request,response);
     }
 }

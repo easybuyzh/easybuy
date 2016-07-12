@@ -11,6 +11,10 @@
 			<form action="/ManageNewsModify.Servlet">
 				<table class="form">
 					<tr>
+						<td class="field">新闻ID:</td>
+						<td><input type="text" class="text" name="enid" value="${news.getEnId()}"  readonly="readonly"/></td>
+					</tr>
+					<tr>
 						<td class="field">新闻标题：</td>
 						<td><input type="text" class="text" name="entitle" value="${news.getEnTitle()}" /></td>
 					</tr>
@@ -20,7 +24,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><label class="ui-blue"><input type="submit" name="enid" value="${news.getEnId()}" />submit</label></td>
+						<td><label class="ui-blue"><input type="submit" name="enbutton" value="" />submit</label></td>
 					</tr>
 				</table>
 			</form>

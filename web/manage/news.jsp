@@ -18,7 +18,7 @@
 				<tr>
 					<td class="first w4 c">${news.getEnCreateTime()}</td>
 					<td>${news.getEnTitle()}</td>
-					<td class="w1 c"><a href="/ManageNewsModify.Servlet?encreatetime=${news.getEnCreateTime()}">修改</a> <a href="/ManageNews.Servlet?endelete=true&encreatetime=${news.getEnCreateTime()}">删除</a></td>
+					<td class="w1 c"><a href="/ManageNewsModify.Servlet?enid=${news.getEnId()}">修改</a> <a href="/ManageNews.Servlet?endelete=true&enid=${news.getEnId()}">删除</a></td>
 				</tr>
 				</c:forEach>
 

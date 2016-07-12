@@ -20,9 +20,9 @@ public class ManageNewsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String EnDelete = request.getParameter("endelete");
-        String EnCreateTime = request.getParameter("encreatetime");
+        String EnId = request.getParameter("enid");
         if (EnDelete != null) {
-            new TableService().deleteNewsByEnCreateTime(EnCreateTime);
+            new TableService().deleteNewsByEnId(EnId);
             response.sendRedirect("/ManageNews.Servlet");
             return;
         }
