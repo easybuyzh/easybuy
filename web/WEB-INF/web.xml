@@ -86,6 +86,35 @@
         <url-pattern>/Notice.Servlet</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>ManageNoticeAddServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageNoticeAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageNoticeAddServlet</servlet-name>
+        <url-pattern>/ManageNoticeAdd.Servlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ManageNoticeServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageNoticeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageNoticeServlet</servlet-name>
+        <url-pattern>/ManageNotice.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageNoticeModifyServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.ManageNoticeModifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageNoticeModifyServlet</servlet-name>
+        <url-pattern>/ManageNoticeModify.Servlet</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>EbNoticeViewController</servlet-name>
         <servlet-class>sdkd.com.ec.controller.EbNoticeViewController</servlet-class>
