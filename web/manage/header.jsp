@@ -33,5 +33,5 @@
     </div>
 </div>
 <div id="position" class="wrap">
-    您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
+    您现在的位置：<a href="/Index.Servlet">易买网</a> &gt; 管理后台
 </div>

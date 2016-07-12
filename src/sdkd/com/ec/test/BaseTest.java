@@ -1,6 +1,7 @@
 package sdkd.com.ec.test;
 
 import sdkd.com.ec.dao.BaseDao;
+import sdkd.com.ec.service.impl.UploadService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,6 @@ import java.util.List;
  */
 public class BaseTest {
     public static void main(String[] args) {
-        new BaseDao().setPro("NumberOfRegisteredUsers" , "123");
+             new UploadService().uploadPicture("G://z13.jpg");
     }
 }

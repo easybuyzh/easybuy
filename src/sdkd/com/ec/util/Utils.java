@@ -25,4 +25,10 @@ public class Utils {
         Date now = new Date();
         return sdf.format(now);
     }
+    public static  boolean CheckInt(String val){
+          for(int i = 0 ; i<val.length() ; i++){
+                 if(val.charAt(i) < '0' || val.charAt(i) > '9') return false;
+          }
+          return true;
+    }
 }

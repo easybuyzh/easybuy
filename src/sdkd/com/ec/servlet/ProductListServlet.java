@@ -21,7 +21,6 @@ public class ProductListServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("productlist",new TableService().getProductListByCategory(request.getParameter("id")));
         request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
         request.setAttribute("parentid",request.getParameter("id"));
         request.setAttribute("category",request.getParameter("category"));
@@ -29,6 +28,17 @@ public class ProductListServlet extends HttpServlet {
         if(userName!=null){
             request.setAttribute("recentbrowselist",new TableService().getRecentBrowseList(userName));
         }
+        String EpcId =  request.getParameter("id");
+        String Page = request.getParameter("page");
+        if(Page == null || Integer.valueOf(Page) == 0) Page = "1";
+        int PageCount = new TableService().getProductListPageCountByCategory(EpcId);
+        if(Integer.valueOf(Page) > PageCount) Page = String.valueOf(PageCount);
+        request.setAttribute("pagecount",PageCount);
+        request.setAttribute("productlist",new TableService().getProductListByCategoryInSpecificPage(EpcId , Integer.valueOf(Page)));
+        request.setAttribute("nowpage",Page);
+
+        request.setAttribute("id",EpcId);
         request.getRequestDispatcher("product-list.jsp").forward(request,response);
+
     }
 }

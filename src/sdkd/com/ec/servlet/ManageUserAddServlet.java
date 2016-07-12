@@ -52,8 +52,12 @@ public class ManageUserAddServlet extends HttpServlet {
         params.add(EuEmail);
 
         if(EuUserName != null){
-            new TableService().InsertUser(columnName,params);
-            response.sendRedirect("/manage/manage-result.jsp");
+            if(new TableService().getUserIdByUserName(EuUserName) != null){
+                request.setAttribute("managefailed","添加新用户失败，用户名已存在");
+            }  else  {
+                new TableService().InsertUser(columnName,params);
+            }
+            request.getRequestDispatcher("/manage/manage-result.jsp").forward(request,response);
             return ;
         }
         response.sendRedirect("/manage/user-add.jsp");

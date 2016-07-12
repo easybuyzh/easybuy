@@ -17,9 +17,7 @@
                     <dt>${procat1.getEpcName()}</dt>
                     <c:forEach var="procat2" items="${productcategorylist}">
                         <c:if test="${procat2.getEpcParentId()==procat1.getEpcId()}">
-                            <li>
-                                <a href="/ProductList.Servlet?id=${procat2.getEpcId()}&category=${procat2.getEpcName()}">${procat2.getEpcName()}</a>
-                            </li>
+                            <a href="/ProductList.Servlet?id=${procat2.getEpcId()}&category=${procat2.getEpcName()}">${procat2.getEpcName()}</a><br/>
                         </c:if>
                     </c:forEach>
                 </c:if>

@@ -58,6 +58,7 @@ public class EbProductCategoryDao extends BaseDao {
         int res = this.exeucteModify(sql, params);
         return (res > 0);
     }
+
     public EbProductCategory getProductCategoryByEpcId(String EpcId){
         List<EbProductCategory> all = this.getProductCatagreys();
         for(EbProductCategory x : all){

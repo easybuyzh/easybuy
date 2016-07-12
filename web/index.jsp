@@ -19,8 +19,9 @@
                 <c:forEach var="product" items="${bargainlist}">
                     <li>
                         <dl>
-                            <dt><a href="/ProductView.Servlet?id=${product.getEpId()}"><img
-                                    src="images/product/${product.getEpProductIcon()}"/></a></dt>
+                            <dt><a href="/ProductView.Servlet?id=${product.getEpId()}">
+                            <img src="images/product/${product.getEpProductIcon()}"/></a>
+                            </dt>
                             <dd class="title"><a href="/ProductView.Servlet?id=${product.getEpId()}">${product.getEpName()}</a></dd>
                             <dd class="price">原价:${product.getEpPrice()} , 折扣价: ${product.getEpBaPrice()}</dd>
                         </dl>

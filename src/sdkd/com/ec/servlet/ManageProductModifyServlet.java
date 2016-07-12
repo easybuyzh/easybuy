@@ -1,12 +1,15 @@
 package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.service.TableService;
+import sdkd.com.ec.service.impl.UploadService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,7 @@ public class ManageProductModifyServlet extends HttpServlet {
         String EpBaPrice = request.getParameter("epbaprice");
         String EpStock = request.getParameter("epstock");
         String EpBarCode = request.getParameter("epbarcode");
+        String EpProductIcon = request.getParameter("epproducticon");
 
         if (EpName != null) {
             List<String> params = new ArrayList<String>();
@@ -48,12 +52,19 @@ public class ManageProductModifyServlet extends HttpServlet {
             columnName.add("ep_stock");
             params.add(EpBarCode);
             columnName.add("ep_bar_code");
+
+            String IconName = EpProductIcon;
+            File te = new  File(EpProductIcon);
+            if(te.exists()) {
+                IconName = te.getName();
+                new UploadService().uploadPicture(EpProductIcon);
+                params.add(IconName);
+                columnName.add("ep_product_icon");
+                //System.out.println( " %$$$$$$$$$$$$$$$$$$$$$$$$$$ --> " + IconName);
+            }
             params.add(EpId);
             columnName.add("ep_id");
 
-            for(int i = 0 ; i< columnName.size() ; i++){
-                System.out.println(columnName.get(i) +  " --> " + params.get(i));
-            }
             new TableService().updateProduct(columnName,params);
 
             response.sendRedirect("/manage/manage-result.jsp");

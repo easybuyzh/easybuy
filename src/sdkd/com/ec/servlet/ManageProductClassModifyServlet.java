@@ -22,7 +22,6 @@ public class ManageProductClassModifyServlet extends HttpServlet {
         String EpcParentId = request.getParameter("epcparentid");
         String EpcId = request.getParameter("epcid");
         String EpcName = request.getParameter("epcname");
-        System.out.println(EpcParentId + " ^^^^^^ " + EpcName + " ^^^ " + EpcId);
         if (EpcParentId != null) {
             new TableService().updateProductCategoryByEpcId(EpcId, EpcName, EpcParentId);
             response.sendRedirect("/manage/manage-result.jsp");

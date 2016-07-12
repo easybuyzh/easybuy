@@ -49,4 +49,14 @@ public class EbOrderViewDao extends BaseDao {
         }
         return null;
     }
+    public List<EbOrderView > getOrderViewByUserId(String UserId){
+        List<EbOrderView> all = this.getOrderViews();
+        List<EbOrderView> res = new ArrayList<EbOrderView>();
+        for(EbOrderView x : all){
+            if(x.getEoUserId().compareTo(UserId) == 0)
+                   res.add(x);
+
+        }
+        return res;
+    }
 }

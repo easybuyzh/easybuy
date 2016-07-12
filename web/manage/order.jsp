@@ -9,8 +9,8 @@
 		<h2>订单管理</h2>
 		<div class="manage">
 			<div class="search">
-				<form method="get">
-					订单号：<input type="text" class="text" name="orderId" /> 订货人：<input type="text" class="text" name="userName" /> <label class="ui-blue"><input type="submit" name="submit" value="查询" /></label>
+				<form method="get" action="/ManageOrder.Servlet">
+					订单号：<input type="text" class="text" name="querybyeoid" /> 订货人：<input type="text" class="text" name="querybyusername" /> <label class="ui-blue"><input type="submit" name="submit" value="查询" /></label>
 				</form>
 			</div>
 			<div class="spacer"></div>
@@ -25,7 +25,7 @@
 				<c:forEach var="order" items="${orderlist}">
 				<tr>
 					<td class="first w4 c">${order.getEoId()}</td>
-					<td class="w1 c">${order.getEoUserId()}</td>
+					<td class="w1 c">${order.getEuUserName()}</td>
 					<td>${order.getEuAddress()}</td>
 					<td class="w1 c">${order.getEoStatus()}</td>
 					<td class="w1 c">

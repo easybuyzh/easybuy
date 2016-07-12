@@ -7,6 +7,7 @@ import sdkd.com.ec.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Created by zhaoshuai on 2016/7/7.
  */
@@ -298,5 +299,36 @@ public class TableService extends BaseDao {
         if(userName == null) return false;
         EbUser user = this.getUserByUserName(userName);
         return (Integer.valueOf(user.getEuRole()) == 1);
+    }
+    public List<EbProduct> getProductListByCategoryInSpecificPage(String EpcId , int page){
+        Integer val = Integer.valueOf(new BaseDao().getPro("ProductListPageMaxMumShowNumber"));
+        List<EbProduct> all = this.getProductListByCategory(EpcId);
+        int start_pos = (page - 1) * val;
+        int end_pos = Math.min(start_pos + val , all.size());
+        List<EbProduct> res = new ArrayList<EbProduct>();
+        for(int i = start_pos ; i < end_pos ; i++){
+               res.add(all.get(i));
+        }
+        return res;
+    }
+    public int getProductListPageCountByCategory(String EpcId){
+         int size = this.getProductListByCategory(EpcId).size();
+         Integer val = Integer.valueOf(new BaseDao().getPro("ProductListPageMaxMumShowNumber"));
+         int res = size / val;
+         if(size % val != 0) res += 1;
+         return Math.max(1 , res); //必须有一个页面用于显示
+    }
+    public String getUserIdByUserName(String userName){
+        if(userName == null) return null;
+        return new EbUserDao().getUserIdByName(userName);
+    }
+    public List<EbOrderView> getOrderViewByEoId(String EoId){
+           EbOrderView te = this.getOrderViewByOrderID(EoId);
+           List<EbOrderView> all = new ArrayList<EbOrderView>();
+           all.add(te);
+           return all;
+    }
+    public List<EbOrderView> getOrderViewByUserId(String UserId){
+           return new EbOrderViewDao().getOrderViewByUserId(UserId);
     }
 }

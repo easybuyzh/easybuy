@@ -31,7 +31,6 @@ public class EbRecentBrowseDao extends BaseDao {
                 te.setErProductId(rs.getString("er_product_id"));
                 te.setErProductName(rs.getString("er_product_name"));
                 te.setErProductIcon(rs.getString("er_product_icon"));
-                //System.out.println(te.getErProductName() + "^^^^^^^&& **** ");
                 all.add(te);
             }
         } catch (SQLException e) {

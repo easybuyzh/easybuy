@@ -13,7 +13,14 @@
 				<em class="corner rt"></em>
 				<div class="box">
 					<div class="msg">
-						<p>恭喜：操作成功！</p>
+						<c:choose>
+						  <c:when test="${managefailed == null}">
+							  <p>恭喜：操作成功！</p>
+						  </c:when>
+						  <c:otherwise>
+						      <p>${managefailed}</p>
+						  </c:otherwise>
+						</c:choose>
 						<p>正在返回首页...</p>
 						<script type="text/javascript">
 							setTimeout("location.href='/manage/index.jsp'", 1000);

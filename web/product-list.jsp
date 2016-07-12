@@ -5,57 +5,68 @@
 
 <jsp:include page="header.jsp"/>
 <div id="position" class="wrap">
-	您现在的位置：<a href="/Index.Servlet">易买网</a>  &gt; ${category}
+    您现在的位置：<a href="/Index.Servlet">易买网</a> &gt; ${category}
 </div>
 <div id="main" class="wrap">
-	<jsp:include page="index-left.jsp"/>
-	<div class="main">
-		<div class="product-list">
-			<h2>全部商品</h2>
-			<div class="pager">
-				<ul class="clearfix">
-					<li><a href="#">上一页</a></li>
-					<li class="current">1</li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">下一页</a></li>
-				</ul>
-			</div>
-			<div class="clear"></div>
-			<ul class="product clearfix">
-				<c:forEach var="product" items="${productlist}">
-					<li>
-						<dl>
-							<dt><a href="/ProductView.Servlet?id=${product.getEpId()}&category=${category}&parentid=${parentid}"><img
-									src="images/product/${product.getEpcProductIcon()}"/></a></dt>
-							<dd class="title">
-								<a href="/ProductView.Servlet?id=${product.getEpId()}&category=${category}&parentid=${parentid}"
-												 >${product.getEpName()}</a></dd>
-							<dd class="price">${product.getEpPrice()}</dd>
-						</dl>
-					</li>
-				</c:forEach>
-			</ul>
-			<div class="clear"></div>
-			<div class="pager">
-				<ul class="clearfix">
-					<li><a href="#">上一页</a></li>
-					<li class="current">1</li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">下一页</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="clear"></div>
+    <jsp:include page="index-left.jsp"/>
+    <div class="main">
+        <div class="product-list">
+            <h2>全部商品</h2>
+            <div class="pager">
+                <ul class="clearfix">
+                    <li><a href="/ProductList.Servlet?id=${id}&page=${Math.max(nowpage - 1 , 1)}">上一页</a></li>
+                    <c:forEach var="x" begin="1" end="${pagecount}" step="1">
+                        <c:choose>
+                            <c:when test="${nowpage == x}">
+                                <li class="current">${x}</li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="/ProductList.Servlet?id=${id}&page=${x}">${x}</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <li><a href="/ProductList.Servlet?id=${id}&page=${nowpage + 1}">下一页</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <ul class="product clearfix">
+                <c:forEach var="product" items="${productlist}">
+                    <li>
+                        <dl>
+                            <dt>
+                                <a href="/ProductView.Servlet?id=${product.getEpId()}&category=${category}&parentid=${parentid}"><img
+                                        src="images/product/${product.getEpcProductIcon()}"/></a></dt>
+                            <dd class="title">
+                                <a href="/ProductView.Servlet?id=${product.getEpId()}&category=${category}&parentid=${parentid}"
+                                >${product.getEpName()}</a></dd>
+                            <dd class="price">${product.getEpPrice()}</dd>
+                        </dl>
+                    </li>
+                </c:forEach>
+            </ul>
+            <div class="clear"></div>
+            <div class="pager">
+                <ul class="clearfix">
+                    <li><a href="/ProductList.Servlet?id=${id}&page=${Math.max(nowpage - 1 , 1)}">上一页</a></li>
+                    <c:forEach var="x" begin="1" end="${pagecount}" step="1">
+                        <c:choose>
+                            <c:when test="${nowpage == x}">
+                                <li class="current">${x}</li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="/ProductList.Servlet?id=${id}&page=${x}">${x}</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <li><a href="/ProductList.Servlet?id=${id}&page=${nowpage + 1}">下一页</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
 </div>
 <div id="footer">
-	Copyright &copy; 2010 北风教育 All Rights Reserved. 京ICP证1000001号
+    Copyright &copy; 2010 北风教育 All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
 </html>

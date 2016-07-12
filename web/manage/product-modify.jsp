@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <td class="field">商品图片：</td>
-                        <td><input type="file" class="text" name="epproductIcon" value="${product.getEpProductIcon()}"/>
+                        <td><input type="file" class="text" name="epproducticon" value="${product.getEpProductIcon()}"/>
                         </td>
                     </tr>
                     <tr>

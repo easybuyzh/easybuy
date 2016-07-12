@@ -14,6 +14,7 @@
 				<div class="box">
 					<div class="msg">
 						<p>欢迎回来</p>
+						<img src="../images/product/apple.jpg"/>
 					</div>
 				</div>
 			</div>

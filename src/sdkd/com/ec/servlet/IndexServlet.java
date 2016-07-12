@@ -34,9 +34,9 @@ public class IndexServlet extends HttpServlet {
         String userName = (String)request.getSession().getAttribute("userName");
         if(userName != null){
             List<EbRecentBrowse> all = new TableService().getRecentBrowseList(userName);
-            //System.out.println(all.get(0).getErProductName() + "%%%%%%%%^^^^^^^^^^^^");
             request.setAttribute("recentbrowselist",new TableService().getRecentBrowseList(userName));
         }
+
         //跳转
         request.getRequestDispatcher("/index.jsp").forward(request,response);
 

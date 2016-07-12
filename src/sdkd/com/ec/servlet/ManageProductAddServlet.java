@@ -1,12 +1,14 @@
 package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.service.TableService;
+import sdkd.com.ec.service.impl.UploadService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +47,14 @@ public class ManageProductAddServlet extends HttpServlet {
             columnName.add("ep_stock");
             params.add(EpBarCode);
             columnName.add("ep_bar_code");
-            params.add(EpProductIcon);
+
+            String IconName = EpProductIcon;
+            File te = new  File(EpProductIcon);
+            if(te.exists()) {
+                IconName = te.getName();
+                new UploadService().uploadPicture(EpProductIcon);
+            }
+            params.add(IconName);
             columnName.add("ep_product_icon");
 
             new TableService().insertProduct(columnName,params);
