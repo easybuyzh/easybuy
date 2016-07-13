@@ -9,9 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>易买网 - 首页</title>
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
     <script type="text/javascript" src="scripts/function.js"></script>
 </head>
 <body>
@@ -23,9 +23,9 @@
             <a href="/manage/index.jsp">进入后台管理页面</a>
         </c:if>
         <c:if test="${userName!=null}">
-           <c:if test="${ismanager == 'true'}">
-               <a href="#">管理员: ${userName}</a>
-           </c:if>
+            <c:if test="${ismanager == 'true'}">
+                <a href="#">管理员: ${userName}</a>
+            </c:if>
             <c:if test="${ismanager == null}">
                 <a href="#">用户: ${userName}</a>
             </c:if>
@@ -44,33 +44,34 @@
     </div>
     <div class="navbar">
         <ul class="clearfix">
-            <li class="current"><a href="Index.Servlet">首页</a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#">百货</a></li>
-            <li><a href="#">品牌</a></li>
-            <li><a href="#">促销</a></li>
+            <c:choose>
+                <c:when test="${selected == '首页'}">
+                    <li class="current"><a href="Index.Servlet">首页</a></li>
+                    <li><a href="/Index.Servlet?general=true">百货</a></li>
+                    <li><a href="/Index.Servlet?bargain=true">促销</a></li>
+                </c:when>
+                <c:when test="${selected == '百货'}">
+                    <li><a href="Index.Servlet">首页</a></li>
+                    <li class="current"><a href="/Index.Servlet?general=true">百货</a></li>
+                    <li><a href="/Index.Servlet?bargain=true">促销</a></li>
+                </c:when>
+                <c:when test="${selected == '特价'}">
+                    <li><a href="Index.Servlet">首页</a></li>
+                    <li><a href="/Index.Servlet?general=true">百货</a></li>
+                    <li class="current"><a href="/Index.Servlet?bargain=true">促销</a></li>
+                </c:when>
+            </c:choose>
         </ul>
     </div>
 </div>
 <div id="childNav">
     <div class="wrap">
         <ul class="clearfix">
-            <li class="first"><a href="#">音乐</a></li>
-            <li><a href="#">影视</a></li>
-            <li><a href="#">少儿</a></li>
-            <li><a href="#">动漫</a></li>
-            <li><a href="#">小说</a></li>
-            <li><a href="#">外语</a></li>
-            <li><a href="#">数码相机</a></li>
-            <li><a href="#">笔记本</a></li>
-            <li><a href="#">羽绒服</a></li>
-            <li><a href="#">秋冬靴</a></li>
-            <li><a href="#">运动鞋</a></li>
-            <li><a href="#">美容护肤</a></li>
-            <li><a href="#">家纺用品</a></li>
-            <li><a href="#">婴幼奶粉</a></li>
-            <li><a href="#">饰品</a></li>
-            <li class="last"><a href="#">Investor Relations</a></li>
+            <c:forEach var="item" items="${productcategorylist}">
+                <c:if test="${item.getEpcParentId()!=0}">
+                    <li><a href="/ProductList.Servlet?id=${item.getEpcId()}">${item.getEpcName()}</a></li>
+                </c:if>
+            </c:forEach>
         </ul>
     </div>
 </div>

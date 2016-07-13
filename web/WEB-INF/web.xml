@@ -60,31 +60,14 @@
 
 
     <servlet>
-        <servlet-name>EbnewsViewController</servlet-name>
-        <servlet-class>sdkd.com.ec.controller.EbNewsViewController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EbnewsViewController</servlet-name>
-        <url-pattern>/Newsview.Servlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>EbProductViewController</servlet-name>
-        <servlet-class>sdkd.com.ec.controller.EbProductViewController</servlet-class>
+        <servlet-class>sdkd.com.ec.servlet.ProductViewServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EbProductViewController</servlet-name>
         <url-pattern>/ProductView.Servlet</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>EbNoticeController</servlet-name>
-        <servlet-class>sdkd.com.ec.controller.EbNoticeController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EbNoticeController</servlet-name>
-        <url-pattern>/Notice.Servlet</url-pattern>
-    </servlet-mapping>
 
 
     <servlet>
@@ -115,14 +98,6 @@
         <url-pattern>/ManageNoticeModify.Servlet</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>EbNoticeViewController</servlet-name>
-        <servlet-class>sdkd.com.ec.controller.EbNoticeViewController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EbNoticeViewController</servlet-name>
-        <url-pattern>/NoticeView.Servlet</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
@@ -296,6 +271,23 @@
     <servlet-mapping>
         <servlet-name>ManageProductClassModifyServlet</servlet-name>
         <url-pattern>/ManageProductClassModify.Servlet</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>NoticeViewServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.NoticeViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NoticeViewServlet</servlet-name>
+        <url-pattern>/NoticeView.Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewsViewServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.servlet.NewsViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewsViewServlet</servlet-name>
+        <url-pattern>/NewsView.Servlet</url-pattern>
     </servlet-mapping>
 </web-app>

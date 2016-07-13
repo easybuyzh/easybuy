@@ -22,7 +22,6 @@ public class ManageUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String EuDelete = request.getParameter("eudelete");
         String EuId = request.getParameter("euuserid");
-        System.out.println(EuDelete + " -- " + EuId);
         if (EuDelete != null) {
             new TableService().deleteUserByEuUserId(EuId);
             response.sendRedirect("/ManageUser.Servlet");

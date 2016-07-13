@@ -11,23 +11,7 @@
     <jsp:include page="index-left.jsp"/>
     <div class="main">
         <div class="product-list">
-            <h2>全部商品</h2>
-            <div class="pager">
-                <ul class="clearfix">
-                    <li><a href="/ProductList.Servlet?id=${id}&page=${Math.max(nowpage - 1 , 1)}">上一页</a></li>
-                    <c:forEach var="x" begin="1" end="${pagecount}" step="1">
-                        <c:choose>
-                            <c:when test="${nowpage == x}">
-                                <li class="current">${x}</li>
-                            </c:when>
-                            <c:otherwise>
-                                <li><a href="/ProductList.Servlet?id=${id}&page=${x}">${x}</a></li>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
-                    <li><a href="/ProductList.Servlet?id=${id}&page=${nowpage + 1}">下一页</a></li>
-                </ul>
-            </div>
+            <jsp:include page="page.jsp"/>
             <div class="clear"></div>
             <ul class="product clearfix">
                 <c:forEach var="product" items="${productlist}">
@@ -45,22 +29,7 @@
                 </c:forEach>
             </ul>
             <div class="clear"></div>
-            <div class="pager">
-                <ul class="clearfix">
-                    <li><a href="/ProductList.Servlet?id=${id}&page=${Math.max(nowpage - 1 , 1)}">上一页</a></li>
-                    <c:forEach var="x" begin="1" end="${pagecount}" step="1">
-                        <c:choose>
-                            <c:when test="${nowpage == x}">
-                                <li class="current">${x}</li>
-                            </c:when>
-                            <c:otherwise>
-                                <li><a href="/ProductList.Servlet?id=${id}&page=${x}">${x}</a></li>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
-                    <li><a href="/ProductList.Servlet?id=${id}&page=${nowpage + 1}">下一页</a></li>
-                </ul>
-            </div>
+            <jsp:include page="page.jsp"/>
         </div>
     </div>
     <div class="clear"></div>

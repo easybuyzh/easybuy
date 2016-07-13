@@ -1,4 +1,4 @@
-package sdkd.com.ec.controller;
+package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.dao.impl.EbNewsDao;
 import sdkd.com.ec.dao.impl.EbProductDao;
@@ -17,8 +17,8 @@ import java.util.List;
 /**
  * Created by zhangjiwen on 2016/7/6.
  */
-@WebServlet(name = "EbProductViewController")
-public class EbProductViewController extends HttpServlet {
+@WebServlet(name = "ProductViewServlet")
+public class ProductViewServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

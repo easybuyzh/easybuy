@@ -3,6 +3,7 @@ package sdkd.com.ec.service;
 import sdkd.com.ec.dao.BaseDao;
 import sdkd.com.ec.dao.impl.*;
 import sdkd.com.ec.model.*;
+import sdkd.com.ec.util.PageUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,17 @@ public class TableService extends BaseDao {
         return res;
     }
 
+    public List<EbProduct> getAllBargainProductList() {
+        List<EbProduct> all = getProductTable();
+        List<EbProduct> res = new ArrayList<EbProduct>();
+        for (EbProduct x : all) {
+            if (x.getEpBargain().compareTo("" + 1) == 0) {
+                res.add(x);
+            }
+        }
+        return res;
+    }
+
     public EbNews getNewsByEnId(String EnId) {
         return new EbNewsDao().getNewByEnId(EnId);
     }
@@ -78,22 +90,24 @@ public class TableService extends BaseDao {
     public boolean insertNotice(String notice_title, String notice_content) {
         return new EbNoticeDao().insertNotice(notice_title, notice_content);
     }
+
     ////通过创建时间删除公告
     public boolean deleteNoticeByNoticeCreateTime(String NoticeCreateTime) {
         return new EbNoticeDao().deleteNoticeByNoticeCreateTime(NoticeCreateTime);
     }
-       ////////更新修改过的公告
+
+    ////////更新修改过的公告
     public boolean updateNoticeByNoticeId(String NoticeId, String NoticeTitle, String NoticeContent) {
         return new EbNoticeDao().UpdateNoticeByNoticeId(NoticeId, NoticeTitle, NoticeContent);
     }
+
     /////////
-    public EbNotice getNoticeByNoticeTime(String NoticeTime)
-    {
-        return  new EbNoticeDao().getNoticeByNoticeTime(NoticeTime);
+    public EbNotice getNoticeByNoticeTime(String NoticeTime) {
+        return new EbNoticeDao().getNoticeByNoticeTime(NoticeTime);
     }
-    public  EbNotice getNoticeByNoticeId(String NoitceId)
-    {
-        return  new EbNoticeDao().getNoticeByNoticeId(NoitceId);
+
+    public EbNotice getNoticeByNoticeId(String NoitceId) {
+        return new EbNoticeDao().getNoticeByNoticeId(NoitceId);
     }
 
 
@@ -311,47 +325,55 @@ public class TableService extends BaseDao {
         EbProduct te = new EbProductDao().getProductByEpId(EpId);
         return new EbRecentBrowseDao().insertNewBrowse(userId, te.getEpId(), te.getEpName(), te.getEpProductIcon());
     }
-    public  List<EbRecentBrowse> getRecentBrowseList(String userName){
+
+    public List<EbRecentBrowse> getRecentBrowseList(String userName) {
         String userId = new EbUserDao().getUserIdByName(userName);
-        return new EbRecentBrowseDao().getRecentBrowseByUserId(userId,"desc");
+        return new EbRecentBrowseDao().getRecentBrowseByUserId(userId, "desc");
     }
-    public EbUser getUserByUserName(String userName){
+
+    public EbUser getUserByUserName(String userName) {
         return this.getUserByUserId(new EbUserDao().getUserIdByName(userName));
     }
-    public  boolean isManager(String userName){
-        if(userName == null) return false;
+
+    public boolean isManager(String userName) {
+        if (userName == null) return false;
         EbUser user = this.getUserByUserName(userName);
         return (Integer.valueOf(user.getEuRole()) == 1);
     }
-    public List<EbProduct> getProductListByCategoryInSpecificPage(String EpcId , int page){
-        Integer val = Integer.valueOf(new BaseDao().getPro("ProductListPageMaxMumShowNumber"));
-        List<EbProduct> all = this.getProductListByCategory(EpcId);
-        int start_pos = (page - 1) * val;
-        int end_pos = Math.min(start_pos + val , all.size());
-        List<EbProduct> res = new ArrayList<EbProduct>();
-        for(int i = start_pos ; i < end_pos ; i++){
-               res.add(all.get(i));
-        }
-        return res;
+
+    public List<EbProduct> getProductListByCategoryInSpecificPage(String EpcId, int page) {
+        PageUtil<EbProduct> util = new PageUtil<EbProduct>();
+        return util.getSpecificPageList(this.getProductListByCategory(EpcId), page);
     }
-    public int getProductListPageCountByCategory(String EpcId){
-         int size = this.getProductListByCategory(EpcId).size();
-         Integer val = Integer.valueOf(new BaseDao().getPro("ProductListPageMaxMumShowNumber"));
-         int res = size / val;
-         if(size % val != 0) res += 1;
-         return Math.max(1 , res); //必须有一个页面用于显示
+
+    public int getProductListPageCountByCategory(String EpcId) {
+        PageUtil<EbProduct> util = new PageUtil<EbProduct>();
+        return util.getPageCount(this.getProductListByCategory(EpcId));
     }
-    public String getUserIdByUserName(String userName){
-        if(userName == null) return null;
+
+    public String getUserIdByUserName(String userName) {
+        if (userName == null) return null;
         return new EbUserDao().getUserIdByName(userName);
     }
-    public List<EbOrderView> getOrderViewByEoId(String EoId){
-           EbOrderView te = this.getOrderViewByOrderID(EoId);
-           List<EbOrderView> all = new ArrayList<EbOrderView>();
-           all.add(te);
-           return all;
+
+    public List<EbOrderView> getOrderViewByEoId(String EoId) {
+        EbOrderView te = this.getOrderViewByOrderID(EoId);
+        List<EbOrderView> all = new ArrayList<EbOrderView>();
+        all.add(te);
+        return all;
     }
-    public List<EbOrderView> getOrderViewByUserId(String UserId){
-           return new EbOrderViewDao().getOrderViewByUserId(UserId);
+
+    public List<EbOrderView> getOrderViewByUserId(String UserId) {
+        return new EbOrderViewDao().getOrderViewByUserId(UserId);
     }
+
+    public EbNotice getNoticeByEnId(String EnId) {
+        List<EbNotice> all = this.getNoticeTable();
+        for (EbNotice x : all) {
+            if (x.getNoticeId().compareTo(EnId) == 0)
+                return x;
+        }
+        return null;
+    }
+
 }

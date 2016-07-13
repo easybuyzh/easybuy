@@ -20,8 +20,8 @@
     <div class="news-list">
         <h4>新闻动态</h4>
         <ul>
-            <c:forEach var="news" items="${newslist}">
-                <li><a href="/Newsview.Servlet?id=${news.enId}" target="_blank">${news.enTitle}</a></li>
+            <c:forEach var="news1" items="${newslist}">
+                <li><a href="/NewsView.Servlet?id=${news1.enId}" target="_blank">${news1.enTitle}</a></li>
             </c:forEach>
         </ul>
     </div>

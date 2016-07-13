@@ -28,12 +28,14 @@ public class ProductListServlet extends HttpServlet {
         if(userName!=null){
             request.setAttribute("recentbrowselist",new TableService().getRecentBrowseList(userName));
         }
+
         String EpcId =  request.getParameter("id");
         String Page = request.getParameter("page");
         if(Page == null || Integer.valueOf(Page) == 0) Page = "1";
         int PageCount = new TableService().getProductListPageCountByCategory(EpcId);
         if(Integer.valueOf(Page) > PageCount) Page = String.valueOf(PageCount);
         request.setAttribute("pagecount",PageCount);
+        request.setAttribute("pageurl","/ProductList.Servlet");
         request.setAttribute("productlist",new TableService().getProductListByCategoryInSpecificPage(EpcId , Integer.valueOf(Page)));
         request.setAttribute("nowpage",Page);
 

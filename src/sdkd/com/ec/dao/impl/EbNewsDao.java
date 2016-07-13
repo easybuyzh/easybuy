@@ -24,8 +24,6 @@ public class EbNewsDao extends BaseDao {
                 news.setEnTitle(rs.getString("en_title"));
                 news.setEnContent(rs.getString("en_content"));
                 news.setEnCreateTime(rs.getString("en_create_time"));
-                //System.out.println(news.getEnId() + " ---  " + news.getEnTitle());
-                //添加到集合中
                 newsList.add(news);
             }
         } catch (SQLException e) {
@@ -55,8 +53,9 @@ public class EbNewsDao extends BaseDao {
     public EbNews getNewByEnId(String EnId) {
         List<EbNews> all = this.getNews();
         for (EbNews x : all) {
-            if (x.getEnId().compareTo(EnId) == 0)
+            if (Integer.valueOf(x.getEnId()) == Integer.valueOf(EnId)){
                 return x;
+            }
         }
         return null;
     }
