@@ -22,7 +22,6 @@
 				<p>库　存：${product.getEpStock()}</p>
 				<div class="button">
 					<input type="button" name="button" value="" onclick="window.location.href='/Shopping.Servlet?productid=${product.getEpId()}'" />
-					<a href="#">放入购物车</a>
 				</div>
 			</div>
 			<div class="clear"></div>
