@@ -8,6 +8,14 @@
     <div class="main">
         <h2>留言管理</h2>
         <div class="manage">
+            <div class="search">
+                <form method="get" action="/ManageGuestBook.Servlet">
+                    姓名:<input type="text" class="text" name="querybyecnickname"/>
+                    <label class="ui-blue">
+                        <input type="submit" name="submit" value="查询"/>
+                    </label>
+                </form>
+            </div>
             <table class="list">
                 <tr>
                     <th>ID</th>

@@ -20,10 +20,12 @@ public class EbCartDao extends BaseDao {
         return (res > 0);
     }
 
-    public boolean IncCartQuantityUserId(String UserId) {
-        String sql = "update easybuy_cart set eca_product_count = eca_product_count + 1 where eca_user_id = ?";
+    public boolean IncCartQuantityUserId(String UserId,String EpProductId) {
+        String sql = "update easybuy_cart set eca_product_count = eca_product_count + 1 " +
+                "where eca_user_id = ? and eca_product_id = ?";
         List<String> params = new ArrayList<String>();
         params.add(UserId);
+        params.add(EpProductId);
         int res = this.exeucteModify(sql, params);
         return (res > 0);
     }
@@ -32,6 +34,15 @@ public class EbCartDao extends BaseDao {
         String sql = "delete from easybuy_cart where eca_user_id = ?";
         List<String> params = new ArrayList<String>();
         params.add(UserId);
+        int res = this.exeucteModify(sql, params);
+        return (res > 0);
+    }
+    public boolean deleteCartByUserId(String UserId , String EpId){
+        String sql = "delete from easybuy_cart " +
+                "where eca_user_id = ? and eca_product_id = ?";
+        List<String> params = new ArrayList<String>();
+        params.add(UserId);
+        params.add(EpId);
         int res = this.exeucteModify(sql, params);
         return (res > 0);
     }

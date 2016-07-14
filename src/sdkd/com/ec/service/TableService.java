@@ -146,7 +146,7 @@ public class TableService extends BaseDao {
         List<EbViewCartDetail> pre = getCart(userName);
         for (EbViewCartDetail x : pre) {
             if (x.getEcaProductId().equals(ProductId)) {
-                new EbCartDao().IncCartQuantityUserId(new EbUserDao().getUserIdByName(userName));
+                new EbCartDao().IncCartQuantityUserId(new EbUserDao().getUserIdByName(userName),ProductId);
                 return true;  // 该用户已经添加了该商品，商品的数量加1
             }
         }
@@ -392,5 +392,21 @@ public class TableService extends BaseDao {
                 res.add(x);
         }
         return res;
+    }
+    public List<EbComment> getCommentListByEcNickName(String EcNickName){
+        List<EbComment> all = getCommentTable();
+        List<EbComment> res = new ArrayList<EbComment>();
+        for(EbComment x : all){
+              if(x.getEcNickName().compareTo(EcNickName) == 0){
+                     res.add(x);
+              }
+        }
+        return res;
+    }
+    public boolean IncCartQuantityByUserName(String userName , String EpId){
+            return new EbCartDao().IncCartQuantityUserId(new EbUserDao().getUserIdByName(userName),EpId);
+    }
+    public boolean DeleteCartByUserName(String userName ,String EpId){
+            return new EbCartDao().deleteCartByUserId(new EbUserDao().getUserIdByName(userName),EpId);
     }
 }

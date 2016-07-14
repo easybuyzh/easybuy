@@ -39,7 +39,6 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-
         if ("shoppingservlet".equals((String) request.getSession().getAttribute("comfrom"))) {
             doShoppingLogin(request, response);
             return;

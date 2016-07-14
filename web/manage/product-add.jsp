@@ -8,11 +8,11 @@
     <div class="main">
         <h2>添加商品</h2>
         <div class="manage">
-            <form action="/ManageProductAdd.Servlet">
+            <form action="/ManageProductAdd.Servlet"  method="post" enctype="multipart/form-data">
                 <table class="form">
                     <tr>
                         <td class="field">商品名称：</td>
-                        <td><input type="text" class="text" name="epname" value=""/></td>
+                        <td><input type="text" class="text" name="epname" value="" onfocus="FocusItem(this)" onblur="CheckItem(this);"/></td>
                     </tr>
                     <tr>
                         <td class="field">所属分类：</td>
@@ -34,11 +34,11 @@
                     </tr>
                     <tr>
                         <td class="field">商品图片：</td>
-                        <td><input type="file" class="text" name="epproducticon" value="1.jpg"/></td>
+                        <td><input type="file" class="text" name="photo" /></td>
                     </tr>
                     <tr>
                         <td class="field">商品价格：</td>
-                        <td><input type="text" class="text tiny" name="epprice"/> 元</td>
+                        <td><input type="text" class="text tiny" name="epprice" onfocus="FocusItem(this)" onblur="CheckItem(this);"/> 元</td>
                     </tr>
                     <tr>
                         <td class="field">是否为特价商品：</td>
@@ -48,15 +48,15 @@
                     </tr>
                     <tr>
                         <td class="field">商品特价：</td>
-                        <td><input type="text" class="text tiny" name="epbaprice"/></td>
+                        <td><input type="text" class="text tiny" name="epbaprice" /></td>
                     </tr>
                     <tr>
                         <td class="field">库存：</td>
-                        <td><input type="text" class="text tiny" name="epstock"/></td>
+                        <td><input type="text" class="text tiny" name="epstock" onfocus="FocusItem(this)" onblur="CheckItem(this);"/></td>
                     </tr>
                     <tr>
                         <td class="field">条码号：</td>
-                        <td><input type="text" class="text" name="epbarcode"/></td>
+                        <td><input type="text" class="text" name="epbarcode_"  onfocus="FocusItem(this)" onblur="CheckItem(this);"/></td>
                     </tr>
                     <tr>
                         <td></td>

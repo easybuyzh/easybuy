@@ -9,7 +9,6 @@
 			<em class="corner rt"></em>
 			<div class="box">
 				<div class="msg">
-
 					<c:choose>
 						<c:when test="${cartempty == null && commitfailed == null}">
 							<p>恭喜：购买成功！</p>

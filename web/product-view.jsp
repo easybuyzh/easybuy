@@ -16,7 +16,7 @@
 	<div id="product" class="main">
 		<h1>${product.getEpName()}</h1>
 		<div class="infos">
-			<div class="thumb"><img src="images/product/${product.getEpProductIcon()}" /></div>
+			<div class="thumb"><img width="250" height="250" src="images/product/${product.getEpProductIcon()}" /></div>
 			<div class="buy">
 				<p>商城价：<span class="price">￥${product.getEpPrice()}</span></p>
 				<p>库　存：${product.getEpStock()}</p>

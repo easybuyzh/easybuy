@@ -23,10 +23,14 @@ public class ManageGuestBookServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("commentlist",new TableService().getCommentTable());
-        request.setAttribute("selected","留言");
+        List<EbComment> commentList = new TableService().getCommentTable();
+        String QueryByEcNickName = request.getParameter("querybyecnickname");
 
-        setPageInfo(request,response,new TableService().getCommentTable(),"/ManageGuestBook.Servlet");
+        if(QueryByEcNickName != null){
+              commentList = new TableService().getCommentListByEcNickName(QueryByEcNickName);
+        }
+        setPageInfo(request,response,commentList,"/ManageGuestBook.Servlet");
+        request.setAttribute("selected","留言");
         request.getRequestDispatcher("manage/guestbook.jsp").forward(request,response);
     }
     protected void setPageInfo(HttpServletRequest request, HttpServletResponse response , List<EbComment> all , String url) throws ServletException, IOException {

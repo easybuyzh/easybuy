@@ -2,6 +2,7 @@ package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.service.TableService;
 import sdkd.com.ec.service.impl.UploadService;
+import sdkd.com.ec.util.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -27,13 +28,15 @@ public class ManageProductModifyServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String EpId = request.getParameter("epid");
-        String EpName = request.getParameter("epname");
+        String EpName = Utils.JspStringFormat(request.getParameter("epname"));
         String EpcId = request.getParameter("epcid");
         String EpPrice = request.getParameter("epprice");
         String EpBargain = request.getParameter("epbargain");
         String EpBaPrice = request.getParameter("epbaprice");
         String EpStock = request.getParameter("epstock");
         String EpBarCode = request.getParameter("epbarcode");
+        String EpProductIcon = request.getParameter("photo");
+        //System.out.println(request.getParameter("photo") + " ******* " + request.getParameter("epproducticon"));
 
         if (EpName != null) {
             List<String> params = new ArrayList<String>();
@@ -54,10 +57,12 @@ public class ManageProductModifyServlet extends HttpServlet {
             params.add(EpBarCode);
             columnName.add("ep_bar_code");
 
+            params.add(upload(request,response)); //上传图片，并返回图片名字
+            columnName.add("ep_product_icon");
+
             params.add(EpId);
             columnName.add("ep_id");
 
-            upload(request,response); //上传图片
             new TableService().updateProduct(columnName,params);
 
             response.sendRedirect("/manage/manage-result.jsp");
@@ -68,10 +73,14 @@ public class ManageProductModifyServlet extends HttpServlet {
         request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
         request.getRequestDispatcher("/manage/product-modify.jsp").forward(request,response);
     }
-    public void upload(HttpServletRequest request, HttpServletResponse  response)throws ServletException, IOException{
+    public String upload(HttpServletRequest request, HttpServletResponse  response)throws ServletException, IOException{
         Part part = request.getPart("photo");
+        if(part.getSize() == 0) {
+            return "1.jpg";
+        }
         String header = part.getHeader("Content-Disposition");
         String fileName = header.substring(header.indexOf("filename=\"")+10,header.lastIndexOf("\""));
         part.write(fileName);
+        return fileName;
     }
 }

@@ -30,16 +30,19 @@
 						<td class="field">出生日期：</td>
 						<td>
 							<select name="birthyear">
-								<option value="2000">2000</option>
-								<option value="1999" selected="selected">1999</option>
+								<c:forEach var="x" begin="1960" end="2016" step="1">
+									<option value="${x}">${x}</option>
+								</c:forEach>
 							</select>年
 							<select name="birthmonth">
-								<option value="12">12</option>
-								<option value="11" selected="selected">11</option>
+								<c:forEach var="x" begin="1" end="12" step="1">
+									<option value="${x}">${x}</option>
+								</c:forEach>
 							</select>月
 							<select name="birthday">
-								<option value="2">2</option>
-								<option value="1" selected="selected">1</option>
+								<c:forEach var="x" begin="1" end="31" step="1">
+									<option value="${x}">${x}</option>
+								</c:forEach>
 							</select>日
 						</td>
 					</tr>
@@ -54,10 +57,6 @@
 					<tr>
 						<td class="field">送货地址：</td>
 						<td><input type="text" class="text" name="euaddress" value="${user.getEuAddress()}" /></td>
-					</tr>
-					<tr>
-						<td class="field">头像：</td>
-						<td><input type="file" class="text" name="photo" /></td>
 					</tr>
 					<tr>
 						<td></td>

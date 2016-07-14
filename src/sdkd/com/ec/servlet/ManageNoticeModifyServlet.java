@@ -15,7 +15,6 @@ import java.io.IOException;
 @WebServlet(name = "ManageNoticeModifyServlet")
 public class ManageNoticeModifyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         doGet(request,response);
     }
 
@@ -24,7 +23,6 @@ public class ManageNoticeModifyServlet extends HttpServlet {
         String NoticeContent = request.getParameter("noticecontent");
         String NoticeTitle = request.getParameter("noticetitle");
         String NoticeId = request.getParameter("noticeid");
-       // System.out.println(NoticeId+"+++++++++++");
 
         if (NoticeContent != null) {
             new TableService().updateNoticeByNoticeId(NoticeId, NoticeTitle,NoticeContent);
@@ -32,9 +30,6 @@ public class ManageNoticeModifyServlet extends HttpServlet {
             return;
         }
         request.setAttribute("notice",new TableService().getNoticeByNoticeId(NoticeId));
-        System.out.println(NoticeId+"+++++++++++");
-
         request.getRequestDispatcher("manage/notice-modify.jsp").forward(request,response);
-
     }
 }
