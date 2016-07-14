@@ -30,6 +30,7 @@
                 </c:forEach>
 
             </table>
+            <jsp:include page="page.jsp"/>
         </div>
     </div>
     <div class="clear"></div>

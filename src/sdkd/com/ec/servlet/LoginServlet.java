@@ -26,37 +26,55 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/Index.Servlet");
             return;
         }
+
         String userName = Utils.JspStringFormat(request.getParameter("userName"));
         String passWord = Utils.JspStringFormat(request.getParameter("passWord"));
-        String veryCode = request.getParameter("veryCode");
-
-        if ("shoppingservlet".equals((String) request.getSession().getAttribute("comfrom"))) {
-            if (new TableService().IsUserExists(userName, passWord) == true) {
-                request.getSession().setAttribute("userName", userName);
-                request.getSession().removeAttribute("comfrom");
-                int userRole = Integer.valueOf((new TableService().getUserByUserName(userName).getEuRole()));
-                if (userRole == 1) {
-                    request.getSession().setAttribute("ismanager", "true");
-                }
-                request.getRequestDispatcher("/Shopping.Servlet").forward(request, response);
-                //问什么这里只能使用重定向才能跳转过去
-            } else {
-                request.setAttribute("hint", "用户名或密码错误");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
+        String hint = null;
+        if (checkVerycode(request, response) == false) hint = "验证码错误";
+        if (new TableService().IsUserExists(userName, passWord) == false) hint = "用户名或密码错误";
+        if (hint != null) {
+            request.setAttribute("selected", "首页");
+            request.setAttribute("hint",hint);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
-        if (new TableService().IsUserExists(userName, passWord) == true) {
-            request.getSession().setAttribute("userName", userName);
-            int userRole = Integer.valueOf((new TableService().getUserByUserName(userName).getEuRole()));
-            if (userRole == 1) {
-                request.getSession().setAttribute("ismanager", "true");
-            }
-            request.getRequestDispatcher("/Index.Servlet").forward(request, response);
-        } else {
-            request.setAttribute("hint", "用户名或密码错误");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+
+
+        if ("shoppingservlet".equals((String) request.getSession().getAttribute("comfrom"))) {
+            doShoppingLogin(request, response);
+            return;
         }
+        doNormalLogin(request, response);
     }
 
+    protected void doNormalLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("selected", "首页");
+        String userName = Utils.JspStringFormat(request.getParameter("userName"));
+        request.getSession().setAttribute("userName", userName);
+        int userRole = Integer.valueOf((new TableService().getUserByUserName(userName).getEuRole()));
+        if (userRole == 1) {
+            request.getSession().setAttribute("ismanager", "true");
+        }
+        request.getRequestDispatcher("/Index.Servlet").forward(request, response);
+    }
+
+    protected void doShoppingLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("selected", "首页");
+        String userName = Utils.JspStringFormat(request.getParameter("userName"));
+        request.getSession().setAttribute("userName", userName);
+        request.getSession().removeAttribute("comfrom");
+        int userRole = Integer.valueOf((new TableService().getUserByUserName(userName).getEuRole()));
+        if (userRole == 1) {
+            request.getSession().setAttribute("ismanager", "true");
+        }
+        request.getRequestDispatcher("/Shopping.Servlet").forward(request, response);
+        //问什么这里只能使用重定向才能跳转过去
+    }
+
+    private boolean checkVerycode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String veryCode = request.getParameter("veryCode");
+        String googlecode = request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY).toString();
+        return (googlecode.compareTo(veryCode) == 0);
+    }
 }
+

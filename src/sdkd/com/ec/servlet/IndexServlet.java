@@ -55,6 +55,7 @@ public class IndexServlet extends HttpServlet {
     }
 
     protected void doGeneral(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String SearchContent = request.getParameter("searchcontent");
         PageUtil<EbProduct> pageUtil = new PageUtil<EbProduct>();
         Integer pageCount = pageUtil.getPageCount(new TableService().getProductTable());
         String nowPage = "1";
@@ -65,7 +66,12 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("nowpage", nowPage);
         request.setAttribute("pagecount", pageCount);
         request.setAttribute("selected", Selected);
-        request.setAttribute("productlist", pageUtil.getSpecificPageList(new TableService().getProductTable(), Integer.valueOf(nowPage)));
+        if(SearchContent != null){
+            request.setAttribute("pagecount", pageUtil.getPageCount(new TableService().searchProductByKeyWord(SearchContent)));
+            request.setAttribute("productlist",new TableService().searchProductByKeyWord(SearchContent));
+        }  else {
+            request.setAttribute("productlist", pageUtil.getSpecificPageList(new TableService().getProductTable(), Integer.valueOf(nowPage)));
+        }
         request.getRequestDispatcher("/index-other.jsp").forward(request, response);
     }
     protected void doBargain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

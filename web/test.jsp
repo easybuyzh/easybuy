@@ -7,28 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>file.html</title>
-
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
-
-    <script type="text/javascript">
-        function showPath(){
-               alert(document.getElementById("f").value);
-        }
-    </script>
-
-</head>
-
-<body>
-<form action="FileServlet" method="post">
-    <input type="file" id="f" name="file">
-    <input type="button" value="show" onclick="showPath();">
-    <input type="submit">
+<form action="kaptchatest" method="post">
+    <img title = "点我换一张" alt="" src="yzm" style="cursor:pointer;" onclick="changeVerifyCode();">
+    <input type="text" name="yzm">
+    <br>
+    <input type="submit" value="测试验证码">
 </form>
-</body>
 </html>

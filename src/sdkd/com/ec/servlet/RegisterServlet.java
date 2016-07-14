@@ -17,21 +17,29 @@ import java.io.IOException;
 @WebServlet(name = "RegisterServlet")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-           doGet(request,response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = Utils.JspStringFormat(request.getParameter("userName"));
         String passWord = Utils.JspStringFormat(request.getParameter("passWord"));
-
-        if(new TableService().RegisterUser(userName,passWord) == true){
-            //注册成功
-            request.getSession().setAttribute("userName",userName);
-            request.getRequestDispatcher("reg-result.jsp").forward(request,response);
-        }  else {
-            //注册失败
-            request.setAttribute("hint","注册失败，可能原因是用户名已存在");
-            request.getRequestDispatcher("register.jsp").forward(request,response);
+        String hint = null;
+        if (checkVerycode(request, response) == false) hint = "验证码错误";
+        if (new TableService().RegisterUser(userName, passWord) == false) hint = "注册失败，用户名已存在";
+        if (hint != null) {
+            request.setAttribute("selected", "首页");
+            request.setAttribute("hint", hint);
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
         }
+        request.setAttribute("selected", "首页");
+        request.getSession().setAttribute("userName", userName);
+        request.getRequestDispatcher("reg-result.jsp").forward(request, response);
+    }
+
+    private boolean checkVerycode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String veryCode = request.getParameter("veryCode");
+        String googlecode = request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY).toString();
+        return (googlecode.compareTo(veryCode) == 0);
     }
 }

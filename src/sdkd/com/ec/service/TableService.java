@@ -375,5 +375,22 @@ public class TableService extends BaseDao {
         }
         return null;
     }
-
+    public List<EbProduct> searchProductByKeyWord(String keyWord){
+        List<EbProduct> all = this.getProductTable();
+        List<EbProduct> res = new ArrayList<EbProduct>();
+        for(EbProduct x : all){
+              if(x.getEpName().indexOf(keyWord) != -1 || (x.getEpDescription() != null && x.getEpDescription().indexOf(keyWord) != -1))
+                   res.add(x);
+        }
+        return res;
+    }
+    public List<EbProduct> getProductListByEpName(String keyWord){
+        List<EbProduct> all = this.getProductTable();
+        List<EbProduct> res = new ArrayList<EbProduct>();
+        for(EbProduct x : all){
+            if(x.getEpName().indexOf(keyWord) != -1)
+                res.add(x);
+        }
+        return res;
+    }
 }

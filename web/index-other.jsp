@@ -14,9 +14,15 @@
     <%@include file="index-left.jsp" %>
     <div class="main">
         <div class="product-list">
-            <jsp:include page="page.jsp"/>
+            <c:if test="${productlist.size() > 0}">
+                <jsp:include page="page.jsp"/>
+            </c:if>
             <div class="clear"></div>
             <ul class="product clearfix">
+                <c:if test="${productlist.size() == 0}">
+                    <%--<img width="500" height="220" src="images/product/emptycart.jpg"/></a> --%>
+                    <h1>没有找到您需要的商品哦..</h1>
+                </c:if>
                 <c:forEach var="product" items="${productlist}">
                     <li>
                         <dl>
@@ -24,13 +30,22 @@
                                 <img src="images/product/${product.getEpProductIcon()}"/></a>
                             </dt>
                             <dd class="title"><a href="/ProductView.Servlet?id=${product.getEpId()}">${product.getEpName()}</a></dd>
-                            <dd class="price">原价:${product.getEpPrice()} , 折扣价: ${product.getEpBaPrice()}</dd>
+                            <c:choose>
+                            <c:when test="${product.getEpBargain()=='1'}">
+                                <dd class="price">原价:${product.getEpPrice()} , 折扣价: ${product.getEpBaPrice()}</dd>
+                            </c:when>
+                            <c:otherwise>
+                                <dd class="price">价格:${product.getEpPrice()}</dd>
+                            </c:otherwise>
+                            </c:choose>
                         </dl>
                     </li>
                 </c:forEach>
             </ul>
             <div class="clear"></div>
-            <jsp:include page="page.jsp"/>
+            <c:if test="${productlist.size() > 0}">
+                <jsp:include page="page.jsp"/>
+            </c:if>
         </div>
     </div>
     <div class="clear"></div>

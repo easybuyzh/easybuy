@@ -25,6 +25,7 @@ public class EbProductController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("productslist",new TableService().getProductTable());
+        request.setAttribute("selected","首页");
 
         request.getRequestDispatcher("/index.jsp").forward(request,response);
     }

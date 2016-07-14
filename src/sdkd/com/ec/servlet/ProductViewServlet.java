@@ -39,6 +39,7 @@ public class ProductViewServlet extends HttpServlet {
         request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
         request.setAttribute("parentid",request.getParameter("parentid"));
         request.setAttribute("category",request.getParameter("category"));
+        request.setAttribute("selected","首页");
         if(userName!=null){
              request.setAttribute("recentbrowselist",new TableService().getRecentBrowseList(userName));
         }

@@ -41,6 +41,10 @@
             <a href="/Comment.Servlet">留言</a>
             <a href="/Logout.Servlet">注销</a>
         </c:if>
+        <form action="/Index.Servlet" method="GET">
+            商品搜索: <input type="text" name="searchcontent"/>
+            <input type="submit" name="general" value="搜索" />
+        </form>
     </div>
     <div class="navbar">
         <ul class="clearfix">

@@ -8,8 +8,8 @@
     <div class="main">
         <h2>修改商品</h2>
         <div class="manage">
-            <form action="/ManageProductModify.Servlet">
-                <table class="form">
+            <form action="/ManageProductModify.Servlet" method="post" enctype="multipart/form-data">
+                <table class="form" >
                     <tr>
                         <td class="field">商品名称：</td>
                         <td><input type="text" class="text" name="epname" value="${product.getEpName()}"/></td>
@@ -18,7 +18,6 @@
                         <td class="field">所属分类：</td>
                         <td>
                             <select name="epcid">
-
                                 <c:forEach var="procat1" items="${productcategorylist}">
                                     <c:if test="${procat1.getEpcParentId() == '0'}">
                                         <c:if test="${procat1.getEpcId() == product.getEpcId()}">
@@ -51,7 +50,7 @@
                     </tr>
                     <tr>
                         <td class="field">商品图片：</td>
-                        <td><input type="file" class="text" name="epproducticon" value="${product.getEpProductIcon()}"/>
+                        <td><input type="file" class="text" name="photo" value="${product.getEpProductIcon()}"/>
                         </td>
                     </tr>
                     <tr>

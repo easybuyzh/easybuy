@@ -17,6 +17,7 @@ public class LogoutServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           request.setAttribute("selected","首页");
            request.getSession().removeAttribute("userName");
            if(request.getSession().getAttribute("ismanager")!=null)
                  request.getSession().removeAttribute("ismanager");

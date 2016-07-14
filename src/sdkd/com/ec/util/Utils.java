@@ -10,8 +10,8 @@ import java.util.Date;
 public class Utils {
     /*来自Jsp页面的中文数据乱码问题，需要借助该甘薯format一下*/
     public static String JspStringFormat(String x) {
-        if(x == null) return null;
-       // return x;
+        if (x == null) return null;
+        // return x;
         try {
             return new String(x.getBytes("ISO-8859-1"), "UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -25,10 +25,11 @@ public class Utils {
         Date now = new Date();
         return sdf.format(now);
     }
-    public static  boolean CheckInt(String val){
-          for(int i = 0 ; i<val.length() ; i++){
-                 if(val.charAt(i) < '0' || val.charAt(i) > '9') return false;
-          }
-          return true;
+
+    public static boolean CheckInt(String val) {
+        for (int i = 0; i < val.length(); i++) {
+            if (val.charAt(i) < '0' || val.charAt(i) > '9') return false;
+        }
+        return true;
     }
 }

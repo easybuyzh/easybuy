@@ -18,7 +18,7 @@
 				</tr>
 				<c:forEach var="product" items="${shoppingcartlist}">
 					<tr id="product_id_1">
-						<td class="thumb"><img src="images/product/${product.getEpProductIcon()}" /><a href="/ProductView.Servlet?id=${product.getEcaProductId()}">${product.getEpName()}</a></td>
+						<td class="thumb"><img width="50" height="50" src="images/product/${product.getEpProductIcon()}" /><a href="/ProductView.Servlet?id=${product.getEcaProductId()}">${product.getEpName()}</a></td>
 						<td class="price" id="price_id_1">
 							<span>￥${product.getEpPrice() * product.getEcaProductCount()}</span>
 							<input type="hidden" value="${product.getEpPrice()}" />

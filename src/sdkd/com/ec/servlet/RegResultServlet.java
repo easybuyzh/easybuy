@@ -13,11 +13,12 @@ import java.io.IOException;
 @WebServlet(name = "RegResultServlet")
 public class RegResultServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          doGet(request,response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-           request.setAttribute("userName",request.getParameter("userName"));
-           request.getRequestDispatcher("/Index.Servlet").forward(request,response);
+        request.setAttribute("userName", request.getParameter("userName"));
+        request.setAttribute("selected", "首页");
+        request.getRequestDispatcher("/Index.Servlet").forward(request, response);
     }
 }

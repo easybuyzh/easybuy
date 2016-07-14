@@ -1,7 +1,9 @@
 package sdkd.com.ec.servlet;
 
 import sdkd.com.ec.model.EbComment;
+import sdkd.com.ec.model.EbOrderView;
 import sdkd.com.ec.service.TableService;
+import sdkd.com.ec.util.PageUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +24,21 @@ public class ManageGuestBookServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("commentlist",new TableService().getCommentTable());
-        
+        request.setAttribute("selected","留言");
+
+        setPageInfo(request,response,new TableService().getCommentTable(),"/ManageGuestBook.Servlet");
         request.getRequestDispatcher("manage/guestbook.jsp").forward(request,response);
+    }
+    protected void setPageInfo(HttpServletRequest request, HttpServletResponse response , List<EbComment> all , String url) throws ServletException, IOException {
+        String page = request.getParameter("page");
+        PageUtil<EbComment> pageUtil = new PageUtil<EbComment>(10);//
+        String nowPage = "1";
+        if (page != null) nowPage = page;
+        Integer pageCount = pageUtil.getPageCount(all);
+        String pageUrl = url;
+        request.setAttribute("nowpage",nowPage);
+        request.setAttribute("pagecount",pageCount);
+        request.setAttribute("pageurl",pageUrl);
+        request.setAttribute("commentlist", pageUtil.getSpecificPageList(all,Integer.valueOf(nowPage))); //
     }
 }

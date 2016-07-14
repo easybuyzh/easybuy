@@ -22,6 +22,7 @@ public class NoticeViewServlet extends HttpServlet {
         request.setAttribute("notice", new TableService().getNoticeByEnId(request.getParameter("id")));
         request.setAttribute("newslist",new TableService().getNewsTable());
         request.setAttribute("noticelist",new TableService().getNoticeTable());
+        request.setAttribute("selected","首页");
         request.getRequestDispatcher("/notice-view.jsp").forward(request, response);
     }
 }

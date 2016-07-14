@@ -22,7 +22,10 @@
 					</tr>
 					<tr>
 						<td class="field">验证码：</td>
-						<td><input class="text verycode" type="text" name="veryCode" onfocus="FocusItem(this)" onblur="CheckItem(this);" /><img id="veryCode" src="" /><span></span></td>
+						<td><input class="text verycode" type="text" name="veryCode" onfocus="FocusItem(this)" onblur="CheckItem(this);" />
+							<img title = "点我换一张" id="kaptchaImage" src="yzm" style="cursor:pointer" onclick="location='/login.jsp'"/>
+							<span></span>
+						</td>
 					</tr>
 					<tr>
 						<td></td>

@@ -24,6 +24,7 @@ public class CommentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("commentlist"  , new TableService().getCommentTable());
         request.setAttribute("productcategorylist"  , new TableService().getProductCategoryTable());
+        request.setAttribute("selected","首页");
 
         request.getRequestDispatcher("guestbook.jsp").forward(request,response);
     }

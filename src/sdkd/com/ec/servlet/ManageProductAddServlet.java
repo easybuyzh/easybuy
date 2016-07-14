@@ -4,10 +4,12 @@ import sdkd.com.ec.service.TableService;
 import sdkd.com.ec.service.impl.UploadService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import java.util.List;
 /**
  * Created by zhaoshuai on 2016/7/10.
  */
-@WebServlet(name = "ManageProductAddServlet")
+@MultipartConfig(location = "C:\\Users\\zhaoshuai\\Desktop\\easybuy\\web\\images\\product")
 public class ManageProductAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -48,15 +50,7 @@ public class ManageProductAddServlet extends HttpServlet {
             params.add(EpBarCode);
             columnName.add("ep_bar_code");
 
-            String IconName = EpProductIcon;
-            File te = new  File(EpProductIcon);
-            if(te.exists()) {
-                IconName = te.getName();
-                new UploadService().uploadPicture(EpProductIcon);
-            }
-            params.add(IconName);
-            columnName.add("ep_product_icon");
-
+            upload(request,response);
             new TableService().insertProduct(columnName,params);
 
             response.sendRedirect("/manage/manage-result.jsp");
@@ -64,5 +58,11 @@ public class ManageProductAddServlet extends HttpServlet {
         }
         request.setAttribute("productcategorylist",new TableService().getProductCategoryTable());
         request.getRequestDispatcher("/manage/product-add.jsp").forward(request,response);
+    }
+    public void upload(HttpServletRequest request, HttpServletResponse  response)throws ServletException, IOException{
+        Part part = request.getPart("photo");
+        String header = part.getHeader("Content-Disposition");
+        String fileName = header.substring(header.indexOf("filename=\"")+10,header.lastIndexOf("\""));
+        part.write(fileName);
     }
 }

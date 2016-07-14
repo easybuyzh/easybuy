@@ -38,6 +38,7 @@ public class ProductListServlet extends HttpServlet {
         request.setAttribute("pageurl","/ProductList.Servlet");
         request.setAttribute("productlist",new TableService().getProductListByCategoryInSpecificPage(EpcId , Integer.valueOf(Page)));
         request.setAttribute("nowpage",Page);
+        request.setAttribute("selected","首页");
 
         request.setAttribute("id",EpcId);
         request.getRequestDispatcher("product-list.jsp").forward(request,response);

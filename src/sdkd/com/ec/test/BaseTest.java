@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class BaseTest {
     public static void main(String[] args) {
-             new UploadService().uploadPicture("G://z13.jpg");
+        String str = "asdasjkdh";
+        String src = "asr";
+        System.out.println(str.indexOf(src) + " ---------- ");
     }
 }
